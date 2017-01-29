@@ -1,4 +1,4 @@
-package com.swroom.genealogical.utils;
+package com.swroom.genealogy.utils;
 
 /**
  * 汉字简繁转换

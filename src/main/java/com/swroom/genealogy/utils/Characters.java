@@ -1,4 +1,4 @@
-package com.swroom.genealogical.utils;
+package com.swroom.genealogy.utils;
 
 import java.util.HashMap;
 import java.util.Map;

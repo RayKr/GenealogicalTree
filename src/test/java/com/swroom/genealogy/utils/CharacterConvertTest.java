@@ -1,4 +1,4 @@
-package com.swroom.genealogical.utils;
+package com.swroom.genealogy.utils;
 
 import junit.framework.TestCase;
 
