@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swroom.genealogy.mapper.GenPersonMapper">
+  <resultMap id="BaseResultMap" type="com.swroom.genealogy.model.po.GenPerson">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="style_name" jdbcType="VARCHAR" property="styleName" />
+    <result column="self_name" jdbcType="VARCHAR" property="selfName" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="father_name" jdbcType="VARCHAR" property="fatherName" />
+    <result column="mother_name" jdbcType="VARCHAR" property="motherName" />
+    <result column="rank" jdbcType="INTEGER" property="rank" />
+    <result column="married" jdbcType="INTEGER" property="married" />
+    <result column="spouse_name" jdbcType="VARCHAR" property="spouseName" />
+    <result column="spouse_address" jdbcType="VARCHAR" property="spouseAddress" />
+    <result column="dead" jdbcType="INTEGER" property="dead" />
+    <result column="death_date" jdbcType="DATE" property="deathDate" />
+    <result column="heir" jdbcType="INTEGER" property="heir" />
+    <result column="heir_father_name" jdbcType="VARCHAR" property="heirFatherName" />
+    <result column="ancestral_sequence" jdbcType="INTEGER" property="ancestralSequence" />
+    <result column="ancestral_sequence_memo" jdbcType="VARCHAR" property="ancestralSequenceMemo" />
+    <result column="branch" jdbcType="INTEGER" property="branch" />
+    <result column="person_memo" jdbcType="VARCHAR" property="personMemo" />
+  </resultMap>
+
+  <select id="selectPerson" resultType="hashmap">
+    select * from gen_person
+  </select>
+
+</mapper>
