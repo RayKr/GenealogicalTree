@@ -1,6 +1,7 @@
 package com.swroom.genealogy.service;
 
 import com.swroom.genealogy.model.po.GenPerson;
+import com.swroom.genealogy.model.vo.VPerson;
 
 import java.util.List;
 
@@ -16,4 +17,13 @@ public interface PersonService {
      * @return
      */
     List<GenPerson> selectByName(String name);
+
+    /**
+     * 返回给前台的个人信息明细
+     * @param pid 主键
+     * @return VPerson
+     */
+    VPerson getPersonDetail(int pid);
+
+    int insertPerson(GenPerson person);
 }
