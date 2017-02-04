@@ -7,13 +7,13 @@ import junit.framework.TestCase;
  */
 public class CharacterConvertTest extends TestCase {
     public void testToSimplified() throws Exception {
-        String name = "肇儀";
+        String name = "肇仪";
         String s = CharacterConvert.toSimplified(name);
         System.out.println(s);
     }
 
     public void testToTraditional() throws Exception {
-        String name = "肇仪";
+        String name = "肇儀";
         String s = CharacterConvert.toTraditional(name);
         System.out.println(s);
     }
