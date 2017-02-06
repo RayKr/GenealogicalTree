@@ -1,10 +1,12 @@
 package com.swroom.genealogy.utils;
 
+import com.swroom.genealogy.common.siglnton.Characters;
+
 /**
  * 汉字简繁转换
  * Created by jingzl on 2017/1/29.
  */
-public abstract class CharacterConvert {
+public final class CharacterConvert {
 
     /**
      * 将简体字符串转换为繁体字符串
