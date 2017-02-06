@@ -104,4 +104,9 @@
         <aop:advisor advice-ref="interceptor" pointcut-ref="txPointcut"/>
     </aop:config>
 
+    <!-- 实现静态类中调用Spring的Bean实例 -->
+    <bean id="enums" class="com.swroom.genealogy.common.Enums" init-method="init">
+        <property name="enu" ref="enumService"/>
+    </bean>
+
 </beans>

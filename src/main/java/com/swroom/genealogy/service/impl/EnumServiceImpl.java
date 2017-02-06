@@ -1,9 +1,10 @@
-package com.swroom.genealogy.service.common;
+package com.swroom.genealogy.service.impl;
 
 import com.swroom.genealogy.mapper.GenEnuMainMapper;
 import com.swroom.genealogy.mapper.GenEnumDetailMapper;
 import com.swroom.genealogy.model.po.GenEnuMain;
 import com.swroom.genealogy.model.po.GenEnumDetail;
+import com.swroom.genealogy.service.EnumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,8 @@ import java.util.Map;
  * 枚举单例
  * Created by jingz on 2017/2/6.
  */
-@Service("enums")
-public class Enums {
+@Service("enumService")
+public class EnumServiceImpl implements EnumService {
 
     @Autowired
     private GenEnuMainMapper enuMainMapper;
@@ -87,6 +88,7 @@ public class Enums {
      * @param value
      * @return
      */
+    @Override
     public String getEnu(String type,String value) {
         if (typeMap == null || typeMap.isEmpty()) {
             this.getTypeMap();

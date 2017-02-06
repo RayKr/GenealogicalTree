@@ -1,5 +1,6 @@
 package com.swroom.genealogy.model.vo;
 
+import com.swroom.genealogy.common.Enums;
 import com.swroom.genealogy.model.po.GenPerson;
 import com.swroom.genealogy.model.po.GenPersonInfo;
 
@@ -67,7 +68,7 @@ public class VPerson {
 
         this.ancestralSeq = this.genPerson.getAncestralSequence();
         this.ancestralSeqMemo = this.genPerson.getAncestralSequenceMemo();
-//        this.branch = ;
+        this.branch = Enums.getEnuName("branch", String.valueOf(this.genPerson.getBranch()));
 
 
     }
