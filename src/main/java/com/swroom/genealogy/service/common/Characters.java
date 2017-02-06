@@ -1,4 +1,4 @@
-package com.swroom.genealogy.common.siglnton;
+package com.swroom.genealogy.service.common;
 
 import java.util.HashMap;
 import java.util.Map;

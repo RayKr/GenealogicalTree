@@ -1,4 +1,4 @@
-package com.swroom.genealogy.service;
+package com.swroom.genealogy.service.common;
 
 import com.swroom.genealogy.mapper.GenEnuMainMapper;
 import com.swroom.genealogy.mapper.GenEnumDetailMapper;
@@ -7,20 +7,25 @@ import com.swroom.genealogy.model.po.GenEnumDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
- * 枚举
+ * 枚举单例
  * Created by jingz on 2017/2/6.
  */
-@Service("enumsService")
-public class EnumService {
+@Service("enums")
+public class Enums {
 
     @Autowired
     private GenEnuMainMapper enuMainMapper;
 
     @Autowired
     private GenEnumDetailMapper enumDetailMapper;
+
+    private Map<String, Map> typeMap; // 用于存储所有枚举的MAP集合
 
     /**
      * 获取所有枚举类型
@@ -40,16 +45,16 @@ public class EnumService {
     }
 
     /**
-     * 获取所有类型Map key-enumType,value-enumValue
+     * 获取所有类型枚举
      * @return
      */
-    public Map<String, Map> getTypeMap() {
+    private Map<String, Map> getTypeMap() {
 
         String type;
         String value;
         String name;
         Map<String, String> enuMap = new HashMap<>();
-        Map<String, Map> typeMap = new HashMap<>();
+        typeMap = new HashMap<>();
 
         List<GenEnuMain> types = this.selectAllTypes();
         Iterator<GenEnuMain> itType = types.iterator();
@@ -74,6 +79,28 @@ public class EnumService {
         }
 
         return typeMap;
+    }
+
+    /**
+     * 根据枚举值获取对应的显示名称
+     * @param type
+     * @param value
+     * @return
+     */
+    public String getEnu(String type,String value) {
+        if (typeMap == null || typeMap.isEmpty()) {
+            this.getTypeMap();
+        }
+        Map<String, String> map = typeMap.get(type);
+        return map.get(value);
+    }
+
+    /**
+     * 为枚举的修改提供刷新方法
+     */
+    public void reload() {
+        typeMap.clear();
+        this.getTypeMap();
     }
 
 }

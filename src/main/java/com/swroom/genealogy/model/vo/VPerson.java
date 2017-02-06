@@ -3,7 +3,6 @@ package com.swroom.genealogy.model.vo;
 import com.swroom.genealogy.model.po.GenPerson;
 import com.swroom.genealogy.model.po.GenPersonInfo;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -62,6 +61,14 @@ public class VPerson {
     }
 
     private void init() {
+        this.name = this.genPerson.getName();
+        this.styleName = this.genPerson.getStyleName();
+        this.selfName = this.genPerson.getSelfName();
+
+        this.ancestralSeq = this.genPerson.getAncestralSequence();
+        this.ancestralSeqMemo = this.genPerson.getAncestralSequenceMemo();
+//        this.branch = ;
+
 
     }
 }

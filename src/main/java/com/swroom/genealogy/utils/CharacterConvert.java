@@ -1,6 +1,6 @@
 package com.swroom.genealogy.utils;
 
-import com.swroom.genealogy.common.siglnton.Characters;
+import com.swroom.genealogy.service.common.Characters;
 
 /**
  * 汉字简繁转换
