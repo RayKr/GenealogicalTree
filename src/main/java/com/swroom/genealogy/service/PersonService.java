@@ -25,5 +25,18 @@ public interface PersonService {
      */
     VPerson getPersonDetail(int pid);
 
+    /**
+     * 新增成员
+     * @param person
+     * @return
+     */
     int insertPerson(GenPerson person);
+
+    /**
+     * 获取子女数量
+     * @param pid
+     * @return array 0-子，1-女
+     */
+    int[] getChildrenNum(String pid);
+
 }

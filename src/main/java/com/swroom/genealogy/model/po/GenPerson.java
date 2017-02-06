@@ -21,6 +21,9 @@ public class GenPerson {
 
     private Integer sex;
 
+    @Column(name = "father_id")
+    private Integer fatherId;
+
     @Column(name = "father_name")
     private String fatherName;
 
@@ -130,6 +133,20 @@ public class GenPerson {
      */
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    /**
+     * @return father_id
+     */
+    public Integer getFatherId() {
+        return fatherId;
+    }
+
+    /**
+     * @param fatherId
+     */
+    public void setFatherId(Integer fatherId) {
+        this.fatherId = fatherId;
     }
 
     /**

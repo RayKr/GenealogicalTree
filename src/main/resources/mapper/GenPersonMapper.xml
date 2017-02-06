@@ -10,6 +10,7 @@
     <result column="style_name" jdbcType="VARCHAR" property="styleName" />
     <result column="self_name" jdbcType="VARCHAR" property="selfName" />
     <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="father_id" jdbcType="INTEGER" property="fatherId" />
     <result column="father_name" jdbcType="VARCHAR" property="fatherName" />
     <result column="mother_name" jdbcType="VARCHAR" property="motherName" />
     <result column="rank" jdbcType="INTEGER" property="rank" />
@@ -30,4 +31,7 @@
     SELECT * FROM gen_person WHERE name = #{simplifiedName} OR name = #{traditionalName} OR style_name = #{simplifiedName} OR style_name = #{traditionalName} OR self_name = #{simplifiedName} OR self_name = #{traditionalName}
   </select>
 
+  <select id="getSonNum" resultType="hashmap">
+    SELECT * FROM
+  </select>
 </mapper>
