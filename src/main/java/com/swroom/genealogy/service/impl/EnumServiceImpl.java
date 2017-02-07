@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -58,18 +57,15 @@ public class EnumServiceImpl implements EnumService {
         typeMap = new HashMap<>();
 
         List<GenEnuMain> types = this.selectAllTypes();
-        Iterator<GenEnuMain> itType = types.iterator();
-        while (itType.hasNext()) {
+        for (GenEnuMain t : types) {
             // 清空enuMap
             enuMap.clear();
             // 获取类型
-            GenEnuMain enu = itType.next();
+            GenEnuMain enu = t;
             type = enu.getEnumType();
             // 根据类型获取该类型所有枚举
             List<GenEnumDetail> enumDetails = this.selectEnumsByType(type);
-            Iterator<GenEnumDetail> itDetails = enumDetails.iterator();
-            while (itDetails.hasNext()) {
-                GenEnumDetail enumDetail = itDetails.next();
+            for (GenEnumDetail enumDetail : enumDetails) {
                 value = enumDetail.getEnumValue();
                 name = enumDetail.getEnumName();
                 // 将枚举值-名对放入map
