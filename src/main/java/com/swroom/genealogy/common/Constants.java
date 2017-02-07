@@ -9,5 +9,6 @@ public class Constants {
     public static final String BRANCH = "branch";   // 分支
     public static final String SEX = "sex";         // 性别
     public static final String RANK = "rank";       // 排行
+    public static final String BOOLEAN = "boolean"; // 是否
 
 }
