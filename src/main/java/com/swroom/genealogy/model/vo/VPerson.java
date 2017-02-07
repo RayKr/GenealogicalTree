@@ -16,42 +16,42 @@ import java.util.*;
 public class VPerson {
 
     // 名称
-    private String pid = ""; // 主键
-    private String name = ""; // 名
-    private String styleName = ""; // 字
-    private String selfName = ""; // 号
+    private String pid; // 主键
+    private String name; // 名
+    private String styleName; // 字
+    private String selfName; // 号
 
     // 世序相关
-    private String ancestralSeq = ""; // 世序
-    private String ancestralSeqMemo = ""; // 世序备注
-    private String branch = ""; // 家族分支
+    private String ancestralSeq; // 世序
+    private String ancestralSeqMemo; // 世序备注
+    private String branch; // 家族分支
 
     // 基本信息
-    private String sex = ""; // 性别
-    private String rank = ""; // 排行
-    private String personMemo = ""; // 个人说明
-    private String dead = ""; // 是否已故
-    private String deathDate = ""; // 已故时间
-    private String heir = ""; // 是否存在过继关系
-    private String sonNum = ""; // 子数量
-    private String daughterNum = ""; // 女数量
+    private String sex; // 性别
+    private String rank; // 排行
+    private String personMemo; // 个人说明
+    private String dead; // 是否已故
+    private String deathDate; // 已故时间
+    private String heir; // 是否存在过继关系
+    private String sonNum; // 子数量
+    private String daughterNum; // 女数量
 
     // 关系网
     private List<String> spouse = new ArrayList<>(); // 配偶，介于古时一夫多妻制
     private Map<String, String> spouseAddress = new HashMap<>(); // 配偶原址
-    private String father = ""; // 父
-    private String mother = ""; // 母
-    private String heirFather = ""; // 嗣父，存在过继关系才显示
+    private String father; // 父
+    private String mother; // 母
+    private String heirFather; // 嗣父，存在过继关系才显示
     private Map<Integer, String> brothers = new HashMap<>(); // 兄弟姐妹Map<pid, name>
     private Map<Integer, String> children = new HashMap<>(); // 子女Map<pid, name>
 
     // 个人信息
-    private String birthday = ""; // 生辰
-    private String currentAddress = ""; // 当前住址
-    private String cellphone = ""; // 联系电话
-    private String profession = ""; // 行业
-    private String position = ""; // 职位
-    private String introduction = ""; // 个人介绍
+    private String birthday; // 生辰
+    private String currentAddress; // 当前住址
+    private String cellphone; // 联系电话
+    private String profession; // 行业
+    private String position; // 职位
+    private String introduction; // 个人介绍
 
 
     public VPerson(GenPerson genPerson, GenPersonInfo genPersonInfo) throws Exception {
