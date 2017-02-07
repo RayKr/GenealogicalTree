@@ -13,4 +13,9 @@ public interface EnumService {
      * @return enum_name
      */
     String getEnu(String type,String value);
+
+    /**
+     * 刷新枚举
+     */
+    void reload();
 }

@@ -105,7 +105,7 @@
     </aop:config>
 
     <!-- 实现静态类中调用Spring的Bean实例 -->
-    <bean id="enums" class="com.swroom.genealogy.common.Enums" init-method="init">
+    <bean id="enums" class="com.swroom.genealogy.common.Enums">
         <property name="enu" ref="enumService"/>
     </bean>
 

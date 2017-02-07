@@ -100,6 +100,7 @@ public class EnumServiceImpl implements EnumService {
     /**
      * 为枚举的修改提供刷新方法
      */
+    @Override
     public void reload() {
         typeMap.clear();
         this.getTypeMap();
