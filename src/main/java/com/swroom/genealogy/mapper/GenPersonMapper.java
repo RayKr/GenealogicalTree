@@ -24,14 +24,14 @@ public interface GenPersonMapper extends Mapper<GenPerson> {
      * @param pid 主键
      * @return int
      */
-    int getSonNum(@Param("pid") String pid);
+    int getSonNum(@Param("pid") int pid);
 
     /**
      * 获取女的数量
      * @param pid 主键
      * @return int
      */
-    int getDaughterNum(@Param("pid") String pid);
+    int getDaughterNum(@Param("pid") int pid);
 
 
 }

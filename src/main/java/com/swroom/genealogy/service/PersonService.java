@@ -37,6 +37,6 @@ public interface PersonService {
      * @param pid
      * @return array 0-子，1-女
      */
-    int[] getChildrenNum(String pid);
+    int[] getChildrenNum(int pid);
 
 }

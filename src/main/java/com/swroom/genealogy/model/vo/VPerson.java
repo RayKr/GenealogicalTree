@@ -47,8 +47,8 @@ public class VPerson {
     private String father; // 父
     private String mother; // 母
     private String heirFather; // 嗣父，存在过继关系才显示
-    private List<String> brothers = new ArrayList<>(); // 兄弟姐妹
-    private List<String> children = new ArrayList<>(); // 子女
+    private Map<Integer, String> brothers = new HashMap<>(); // 兄弟姐妹Map<pid, name>
+    private Map<Integer, String> children = new HashMap<>(); // 子女Map<pid, name>
 
     // 个人信息
     private String birthday; // 生辰
@@ -118,11 +118,11 @@ public class VPerson {
         this.daughterNum = daughterNum;
     }
 
-    public void setBrothers(List<String> brothers) {
+    public void setBrothers(Map<Integer, String> brothers) {
         this.brothers = brothers;
     }
 
-    public void setChildren(List<String> children) {
+    public void setChildren(Map<Integer, String> children) {
         this.children = children;
     }
 }

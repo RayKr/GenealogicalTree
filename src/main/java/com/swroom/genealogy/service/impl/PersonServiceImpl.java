@@ -1,5 +1,7 @@
 package com.swroom.genealogy.service.impl;
 
+import com.swroom.genealogy.common.Constants;
+import com.swroom.genealogy.common.Enums;
 import com.swroom.genealogy.mapper.GenPersonInfoMapper;
 import com.swroom.genealogy.mapper.GenPersonMapper;
 import com.swroom.genealogy.model.po.GenPerson;
@@ -51,7 +53,15 @@ public class PersonServiceImpl implements PersonService {
     public VPerson getPersonDetail(int pid) {
         GenPerson genPerson = this.personMapper.selectByPrimaryKey(pid);
         GenPersonInfo genPersonInfo = this.personInfoMapper.selectByPrimaryKey(pid);
+        // 封装view-bean
         VPerson vPerson = new VPerson(genPerson, genPersonInfo);
+        // 子、女数量
+        int[] childrenNum = this.getChildrenNum(pid);
+        vPerson.setSonNum(Enums.getEnuName(Constants.RANK, String.valueOf(childrenNum[0])));
+        vPerson.setDaughterNum(Enums.getEnuName(Constants.RANK, String.valueOf(childrenNum[1])));
+        // 兄弟姐妹
+
+
         return vPerson;
     }
 
@@ -72,7 +82,7 @@ public class PersonServiceImpl implements PersonService {
      * @return
      */
     @Override
-    public int[] getChildrenNum(String pid) {
+    public int[] getChildrenNum(int pid) {
         return new int[]{this.personMapper.getSonNum(pid), this.personMapper.getDaughterNum(pid)};
     }
 
