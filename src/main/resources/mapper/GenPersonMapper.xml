@@ -26,12 +26,28 @@
     <result column="branch" jdbcType="INTEGER" property="branch" />
     <result column="person_memo" jdbcType="VARCHAR" property="personMemo" />
   </resultMap>
-
+  <!-- 按名模糊查询 -->
   <select id="selectPersonByName" resultMap="BaseResultMap">
-    SELECT * FROM gen_person WHERE name = #{simplifiedName} OR name = #{traditionalName} OR style_name = #{simplifiedName} OR style_name = #{traditionalName} OR self_name = #{simplifiedName} OR self_name = #{traditionalName}
+    SELECT * FROM gen_person
+    WHERE name = #{simplifiedName} OR name = #{traditionalName}
+    OR style_name = #{simplifiedName} OR style_name = #{traditionalName}
+    OR self_name = #{simplifiedName} OR self_name = #{traditionalName}
   </select>
-
-  <select id="getSonNum" resultType="hashmap">
-    SELECT * FROM
+  <!-- 获取子数 -->
+  <select id="getSonNum" resultType="int">
+    SELECT count(pid) FROM gen_person WHERE father_id = #{pid} and sex = '1'
+  </select>
+  <!-- 获取女数 -->
+  <select id="getDaughterNum" resultType="int">
+    SELECT count(pid) FROM gen_person WHERE father_id = #{pid} and sex = '0'
+  </select>
+  <!-- 获取兄弟姐妹 -->
+  <select id="getBrothers" resultMap="BaseResultMap">
+    SELECT * FROM gen_person
+    WHERE father_id = ( SELECT g.father_id FROM gen_person g WHERE g.pid = #{pid} )
+  </select>
+  <!-- 获取子女 -->
+  <select id="getChildren" resultMap="BaseResultMap">
+    SELECT * FROM gen_person WHERE father_id = #{pid}
   </select>
 </mapper>

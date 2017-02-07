@@ -118,11 +118,11 @@ public class VPerson {
         this.daughterNum = daughterNum;
     }
 
-    public void setBrothers(Map<Integer, String> brothers) {
-        this.brothers = brothers;
+    public Map<Integer, String> getBrothers() {
+        return brothers;
     }
 
-    public void setChildren(Map<Integer, String> children) {
-        this.children = children;
+    public Map<Integer, String> getChildren() {
+        return children;
     }
 }

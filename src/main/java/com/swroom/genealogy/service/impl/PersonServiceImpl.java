@@ -29,6 +29,7 @@ public class PersonServiceImpl implements PersonService {
 
     /**
      * 根据名字查询成员方法
+     *
      * @param name 名(简/繁)，字，号
      * @return 成员对象列表
      */
@@ -46,6 +47,7 @@ public class PersonServiceImpl implements PersonService {
 
     /**
      * 个人详细页需要的所有信息
+     *
      * @param pid 主键
      * @return
      */
@@ -53,31 +55,44 @@ public class PersonServiceImpl implements PersonService {
     public VPerson getPersonDetail(int pid) {
         GenPerson genPerson = this.personMapper.selectByPrimaryKey(pid);
         GenPersonInfo genPersonInfo = this.personInfoMapper.selectByPrimaryKey(pid);
+
         // 封装view-bean
         VPerson vPerson = new VPerson(genPerson, genPersonInfo);
+
         // 子、女数量
         int[] childrenNum = this.getChildrenNum(pid);
         vPerson.setSonNum(Enums.getEnuName(Constants.RANK, String.valueOf(childrenNum[0])));
         vPerson.setDaughterNum(Enums.getEnuName(Constants.RANK, String.valueOf(childrenNum[1])));
-        // 兄弟姐妹
 
+        // 兄弟姐妹
+        List<GenPerson> brothers = this.personMapper.getBrothers(pid);
+        for (GenPerson brother : brothers) {
+            vPerson.getBrothers().put(brother.getPid(), brother.getName());
+        }
+
+        // 子女
+        List<GenPerson> children = this.personMapper.getChildren(pid);
+        for (GenPerson child : children) {
+            vPerson.getChildren().put(child.getPid(), child.getName());
+        }
 
         return vPerson;
     }
 
     /**
      * 新增一个成员
+     *
      * @param person
      * @return
      */
     @Override
     public int insertPerson(GenPerson person) {
-        int i = this.personMapper.insert(person);
-        return i;
+        return this.personMapper.insert(person);
     }
 
     /**
      * 获取子、女数量
+     *
      * @param pid
      * @return
      */

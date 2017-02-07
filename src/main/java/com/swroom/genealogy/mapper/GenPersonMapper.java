@@ -33,5 +33,17 @@ public interface GenPersonMapper extends Mapper<GenPerson> {
      */
     int getDaughterNum(@Param("pid") int pid);
 
+    /**
+     * 获取当前家族成员平级的兄弟姐妹
+     * @param pid 主键
+     * @return 兄弟姐妹
+     */
+    List<GenPerson> getBrothers(@Param("pid") int pid);
 
+    /**
+     * 获取当前家族成员的所有子女
+     * @param pid 主键
+     * @return 子女
+     */
+    List<GenPerson> getChildren(@Param("pid") int pid);
 }
