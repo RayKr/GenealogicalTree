@@ -53,13 +53,13 @@ public class EnumServiceImpl implements EnumService {
         String type;
         String value;
         String name;
-        Map<String, String> enuMap = new HashMap<>();
+        Map<String, String> enuMap;
         typeMap = new HashMap<>();
 
         List<GenEnuMain> types = this.selectAllTypes();
         for (GenEnuMain t : types) {
-            // 清空enuMap
-            enuMap.clear();
+            // 此处需重新创建实例，而不能用enuMap.clear()
+            enuMap = new HashMap<>();
             // 获取类型
             GenEnuMain enu = t;
             type = enu.getEnumType();
