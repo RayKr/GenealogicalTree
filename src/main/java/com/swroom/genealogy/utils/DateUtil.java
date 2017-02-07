@@ -91,6 +91,8 @@ public class DateUtil {
      * @return yyyy-MM-dd
      */
     public static String getDateStr(Date date) {
+        if (date == null)
+            return "";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(date);
     }

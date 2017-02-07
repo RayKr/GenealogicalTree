@@ -52,7 +52,7 @@ public class PersonServiceImpl implements PersonService {
      * @return
      */
     @Override
-    public VPerson getPersonDetail(int pid) {
+    public VPerson getPersonDetail(int pid) throws Exception {
         GenPerson genPerson = this.personMapper.selectByPrimaryKey(pid);
         GenPersonInfo genPersonInfo = this.personInfoMapper.selectByPrimaryKey(pid);
 

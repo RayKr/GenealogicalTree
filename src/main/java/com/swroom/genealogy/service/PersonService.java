@@ -23,7 +23,7 @@ public interface PersonService {
      * @param pid 主键
      * @return VPerson
      */
-    VPerson getPersonDetail(int pid);
+    VPerson getPersonDetail(int pid) throws Exception;
 
     /**
      * 新增成员
