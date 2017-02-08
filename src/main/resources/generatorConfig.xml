@@ -52,7 +52,7 @@
         </javaClientGenerator>
 
         <!-- 生成所有的表 -->
-        <table tableName="%">
+        <table tableName="site_menu">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>
