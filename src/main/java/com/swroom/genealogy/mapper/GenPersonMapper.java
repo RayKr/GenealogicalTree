@@ -46,4 +46,10 @@ public interface GenPersonMapper extends Mapper<GenPerson> {
      * @return 子女
      */
     List<GenPerson> getChildren(@Param("pid") int pid);
+
+    /**
+     * 获取所有成员记录数
+     * @return 总数
+     */
+    int getAllPersonCount();
 }

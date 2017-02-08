@@ -110,3 +110,21 @@ var InitMenu = function (url, parentid) {
         return $li;
     };
 };
+
+/**
+ * 初始化站点信息
+ * @param url
+ * @param id
+ * @constructor
+ */
+var InitSite = function (url, id) {
+    $.getJSON(url, function(data){
+        console.info(data);
+        new Vue({
+            el: '#' + id,
+            data: {
+                site: data
+            }
+        });
+    });
+};

@@ -1,6 +1,7 @@
 package com.swroom.genealogy.service;
 
 import com.swroom.genealogy.model.vo.VMenu;
+import com.swroom.genealogy.model.vo.VSite;
 
 import java.util.List;
 
@@ -16,4 +17,9 @@ public interface SiteService {
      */
     List<VMenu> getMenu();
 
+    /**
+     * 获取站点配置信息
+     * @return 站点信息
+     */
+    VSite getSiteConfig();
 }

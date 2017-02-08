@@ -3,6 +3,8 @@ package com.swroom.genealogy.service.impl;
 import com.swroom.genealogy.mapper.SiteMenuMapper;
 import com.swroom.genealogy.model.po.SiteMenu;
 import com.swroom.genealogy.model.vo.VMenu;
+import com.swroom.genealogy.model.vo.VSite;
+import com.swroom.genealogy.service.PersonService;
 import com.swroom.genealogy.service.SiteService;
 import com.swroom.genealogy.service.common.MenuHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class SiteServiceImpl implements SiteService {
     @Autowired
     private SiteMenuMapper menuMapper;
 
+    @Autowired
+    private PersonService personService;
+
 
     @Override
     public List<VMenu> getMenu() {
@@ -33,5 +38,13 @@ public class SiteServiceImpl implements SiteService {
         this.menuHandler = new MenuHandler(allMenus, topMenus);
         // 递归生成菜单对象
         return menuHandler.toMenuList();
+    }
+
+    @Override
+    public VSite getSiteConfig() {
+        VSite site = new VSite();
+        // 总记录数
+        site.setPersonCount(this.personService.getAllPersonCount());
+        return site;
     }
 }

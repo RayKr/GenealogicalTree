@@ -8,7 +8,7 @@
 <!-- jQuery 2.2.3 -->
 <script src="/assets/vendor/jQuery/jquery-2.2.3.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="/assets/vendor/jQueryUI/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button);
@@ -42,5 +42,7 @@
 <%--<script src="/assets/vendor/adminlte-2.3.11/js/pages/dashboard.js"></script>--%>
 <!-- AdminLTE for demo purposes -->
 <%--<script src="/assets/vendor/adminlte-2.3.11/js/demo.js"></script>--%>
+<%-- VUE --%>
+<script src="/assets/vendor/vue-2.0/vue.js"></script>
 <%-- common js--%>
 <script src="/assets/js/common.js"></script>

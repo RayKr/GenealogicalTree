@@ -13,7 +13,7 @@
     <%@ include file="support/style.jsp" %>
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
-<div class="wrapper">
+<div class="wrapper" id="post_body">
 
     <%@ include file="support/header_top.jsp" %>
 
@@ -22,31 +22,41 @@
 
             <!-- Main content -->
             <section class="content">
-                <div class="callout callout-info">
-                    <h4>Tip!</h4>
 
-                    <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a
-                        sidebar! So use this class if you want to remove the custom dropdown menus from the navbar and use regular
-                        links instead.</p>
+                <div class="alert alert-success">
+                    <div class="box-body site-header" style="text-align: center; margin-bottom: 10px">
+                        <h1>景氏家谱</h1>
+                        <p>山东省莱芜市寨里镇水北街景氏家谱<br><span>共收录了 <strong>{{ site.personCount }}</strong> 条家族成员信息</span>
+                        </p>
+                        <div class="input-group input-group-lg">
+                            <input class="form-control input-lg" type="text" placeholder="输入名开始搜索...">
+                            <span class="input-group-btn">
+                                <button type="submit" name="search" id="search-btn" class="btn btn-info btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div class="callout callout-danger">
-                    <h4>Warning!</h4>
 
-                    <p>The construction of this layout differs from the normal one. In other words, the HTML markup of the navbar
-                        and the content will slightly differ than that of the normal layout.</p>
-                </div>
-                <div class="box box-default">
+                <div class="box box-success collapsed-box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Blank Box</h3>
+                        <h3 class="box-title">搜索结果</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="box-body">
-                        The great content goes here
+                        <ul class="nav nav-stacked">
+                            <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
+                            <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
+                            <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
+                            <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+                        </ul>
                     </div>
-                    <!-- /.box-body -->
+
                 </div>
-                <!-- /.box -->
+
             </section>
-            <!-- /.content -->
 
         </div>
     </div>
@@ -56,7 +66,10 @@
 
 <%@ include file="support/script.jsp" %>
 <script>
-    InitMenu('/person/getperson', 'navbar-menu');
+    $(function () {
+        InitMenu('/initmenu', 'navbar-menu');
+        InitSite('/siteinfo', 'post_body');
+    });
 </script>
 </body>
 </html>

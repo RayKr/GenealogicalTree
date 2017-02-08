@@ -101,4 +101,9 @@ public class PersonServiceImpl implements PersonService {
         return new int[]{this.personMapper.getSonNum(pid), this.personMapper.getDaughterNum(pid)};
     }
 
+    @Override
+    public int getAllPersonCount() {
+        return this.personMapper.getAllPersonCount();
+    }
+
 }

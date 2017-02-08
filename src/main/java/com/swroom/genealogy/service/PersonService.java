@@ -39,4 +39,10 @@ public interface PersonService {
      */
     int[] getChildrenNum(int pid);
 
+    /**
+     * 获取总记录数
+     * @return 总数
+     */
+    int getAllPersonCount();
+
 }

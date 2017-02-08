@@ -50,4 +50,8 @@
   <select id="getChildren" resultMap="BaseResultMap">
     SELECT * FROM gen_person WHERE father_id = #{pid}
   </select>
+  <!-- 获取总记录数 -->
+  <select id="getAllPersonCount" resultType="int">
+    SELECT COUNT(pid) from gen_person
+  </select>
 </mapper>
