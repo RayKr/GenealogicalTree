@@ -44,5 +44,7 @@
 <%--<script src="/assets/vendor/adminlte-2.3.11/js/demo.js"></script>--%>
 <%-- VUE --%>
 <script src="/assets/vendor/vue-2.0/vue.js"></script>
+<%-- toastr --%>
+<script src="/assets/vendor/toastr/build/toastr.min.js"></script>
 <%-- common js--%>
 <script src="/assets/js/common.js"></script>

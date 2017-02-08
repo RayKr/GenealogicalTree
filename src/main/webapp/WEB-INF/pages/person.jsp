@@ -21,7 +21,7 @@
         <div class="container">
 
             <!-- Main content -->
-            <section class="content">
+            <section class="content" id="search-section">
 
                 <div class="alert alert-success">
                     <div class="box-body site-header" style="text-align: center; margin-bottom: 10px">
@@ -29,28 +29,29 @@
                         <p>山东省莱芜市寨里镇水北街景氏家谱<br><span>共收录了 <strong>{{ site.personCount }}</strong> 条家族成员信息</span>
                         </p>
                         <div class="input-group input-group-lg">
-                            <input class="form-control input-lg" type="text" placeholder="输入名开始搜索...">
+                            <input id="pname" class="form-control input-lg" type="text" placeholder="输入名开始搜索...">
                             <span class="input-group-btn">
-                                <button type="submit" name="search" id="search-btn" class="btn btn-info btn-flat"><i class="fa fa-search"></i></button>
+                                <button type="button" name="search" id="search-btn" class="btn btn-info btn-flat" onclick="submit();"><i class="fa fa-search"></i></button>
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="box box-success collapsed-box">
+                <div class="box box-success">
                     <div class="box-header with-border">
                         <h3 class="box-title">搜索结果</h3>
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                            </button>
-                        </div>
                     </div>
-                    <div class="box-body">
-                        <ul class="nav nav-stacked">
-                            <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
-                            <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
-                            <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
-                            <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+                    <div class="box-body" id="search-result">
+                        <%-- 结果列表 --%>
+                        <ul class="nav nav-stacked" id="result-list">
+                            <%--<li class="info-box">--%>
+                                <%--<span class="info-box-icon bg-gray info-box-icon-sm"><i class="fa fa-user"></i></span>--%>
+
+                                <%--<div class="info-box-content">--%>
+                                    <%--<span class="info-box-text">景</span>--%>
+                                    <%--<span class="info-box-number"><a href="http://ihave.news">汝和</a></span>--%>
+                                <%--</div>--%>
+                            <%--</li>--%>
                         </ul>
                     </div>
 
@@ -70,6 +71,32 @@
         InitMenu('/initmenu', 'navbar-menu');
         InitSite('/siteinfo', 'post_body');
     });
+
+    var submit = function () {
+        console.info($("#pname").val());
+        if ($("#pname").val()) {
+            $.ajax({
+                url: '/person/search',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    name: $('#pname').val()
+                },
+                success: showResponse
+            });
+        }
+    };
+    var showResponse = function (responseText, statusText, xhr, $form) {
+        console.info(responseText);
+        if (responseText.success) {
+            // 绑定json数据到页面
+            BindPeople(responseText.result);
+            // 展开结果列表
+            $('.btn-box-tool').trigger('click');
+        } else {
+            toastr.error(responseText.msg);
+        }
+    };
 </script>
 </body>
 </html>

@@ -119,7 +119,6 @@ var InitMenu = function (url, parentid) {
  */
 var InitSite = function (url, id) {
     $.getJSON(url, function(data){
-        console.info(data);
         new Vue({
             el: '#' + id,
             data: {
@@ -127,4 +126,64 @@ var InitSite = function (url, id) {
             }
         });
     });
+};
+
+/**
+ * 显示查询结果
+ * @param json
+ * @constructor
+ */
+var BindJson = function (jsonObj) {
+    for (var o in jsonObj) {
+        var domObj = document.getElementById(o.toString());
+        if (domObj) {
+            if(jsonObj[o]) {
+                // 判断tagName，分别赋值
+                var tag = domObj.tagName.toUpperCase();
+                if (tag === "A" || tag === "SPAN") {
+                    domObj.innerText = jsonObj[o].toString();
+                } else {
+                    domObj.value = jsonObj[o].toString();
+                }
+            }
+            // 判断为true，则更改label显示效果
+            if (jsonObj[o] === true) {
+                // 更改label样式
+                var $label = $('#label-' + o.toString());
+                if ($label.length > 0) {
+                    $label.removeClass('label-default').addClass('label-warning');
+
+                    // 封装数据
+                    $label.empty();
+                    var $a = $('<a href="javascript:void(0);" onclick="openLink(\''+o.toString()+'\');">'+labelenu[o].toString()+'</a>');
+                    $label.append($a);
+                }
+
+            } else if (jsonObj[o] === false) {
+                var $label = $('#label-' + o.toString());
+                if ($label.length > 0) {
+                    $label.removeClass('label-warning').addClass('label-default');
+
+                    // 封装数据
+                    $label.empty();
+                    $label.append(labelenu[o].toString());
+                }
+
+            }
+        }
+        if (typeof(jsonObj[o]) == "object") {
+            BindJson(jsonObj[o]);
+        }
+    }
+};
+
+var BindPeople = function (json) {
+    var $ul = $("#result-list");
+    for (var o in json) {
+        var $a = $('<a href="javascript:void(0);" onclick="openLink(' + json[o].pid +');"></a>');
+        $a.append(json[o].name);
+        var $li = $('<li></li>');
+        $li.append($a);
+        $ul.append($li);
+    }
 };

@@ -20,9 +20,16 @@
 .site-header span {
     font-size: 14px;
 }
-.site-header .input-lg {
-    border-radius: 0;
+/*.site-header .input-lg {*/
+    /*border-radius: 0;*/
+/*}*/
+/*#search-btn {*/
+    /*border-radius: 0;*/
+/*}*/
+#result-list {
+    padding: 5px 20px;
 }
-#search-btn {
-    border-radius: 0;
+#result-list a {
+    font-size: 1.2em;
+    color: #006666;
 }
