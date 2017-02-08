@@ -9,74 +9,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Flat UI - Free Bootstrap Framework and Theme</title>
-    <meta name="description" content="Flat UI"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-    <!-- Loading Bootstrap -->
-    <link href="/assets/vendor/flat-ui/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Loading Flat UI -->
-    <link href="/assets/vendor/flat-ui/dist/css/flat-ui.css" rel="stylesheet">
-    <link href="/assets/vendor/flat-ui/docs/assets/css/demo.css" rel="stylesheet">
-    <link rel="shortcut icon" href="/assets/vendor/flat-ui/img/favicon.ico">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-    <script src="/assets/vendor/flat-ui/dist/js/vendor/html5shiv.js"></script>
-    <script src="/assets/vendor/flat-ui/dist/js/vendor/respond.min.js"></script>
-    <![endif]-->
+    <title>成员信息 - 景氏家谱</title>
+    <%@ include file="support/style.jsp" %>
 </head>
-<body>
-<div class="row demo-row">
-    <div class="col-xs-12">
-        <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-                    <span class="sr-only">Toggle navigation</span>
-                </button>
-                <%--<a class="navbar-brand" href="#">Jing Genealogy</a>--%>
-                <form class="navbar-form navbar-right" action="#" role="search">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
-                            <span class="input-group-btn">
-                      <button type="submit" class="btn"><span class="fui-search"></span></button>
-                    </span>
-                        </div>
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+    <%@ include file="support/header_top.jsp" %>
+
+    <div class="content-wrapper">
+        <div class="container">
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="callout callout-info">
+                    <h4>Tip!</h4>
+
+                    <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a
+                        sidebar! So use this class if you want to remove the custom dropdown menus from the navbar and use regular
+                        links instead.</p>
+                </div>
+                <div class="callout callout-danger">
+                    <h4>Warning!</h4>
+
+                    <p>The construction of this layout differs from the normal one. In other words, the HTML markup of the navbar
+                        and the content will slightly differ than that of the normal layout.</p>
+                </div>
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Blank Box</h3>
                     </div>
-                </form>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse-01">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#fakelink">Menu Item<span class="navbar-unread">1</span></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages <b class="caret"></b></a>
-                        <span class="dropdown-arrow"></span>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#fakelink">About Us</a></li>
-                </ul>
+                    <div class="box-body">
+                        The great content goes here
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </section>
+            <!-- /.content -->
 
-            </div><!-- /.navbar-collapse -->
-        </nav><!-- /navbar -->
+        </div>
     </div>
-</div> <!-- /row -->
 
+    <%@ include file="support/footer_top.jsp" %>
+</div>
 
-<script src="/assets/vendor/flat-ui/dist/js/vendor/jquery.min.js"></script>
-<script src="/assets/vendor/flat-ui/dist/js/vendor/video.js"></script>
-<script src="/assets/vendor/flat-ui/dist/js/flat-ui.min.js"></script>
-<script src="/assets/vendor/flat-ui/docs/assets/js/application.js"></script>
-
+<%@ include file="support/script.jsp" %>
 <script>
-    videojs.options.flash.swf = "dist/js/vendors/video-js.swf"
+    InitMenu('/person/getperson', 'navbar-menu');
 </script>
 </body>
 </html>

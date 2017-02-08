@@ -39,6 +39,8 @@
 <!-- AdminLTE App -->
 <script src="/assets/vendor/adminlte-2.3.11/js/app.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/assets/vendor/adminlte-2.3.11/js/pages/dashboard.js"></script>
+<%--<script src="/assets/vendor/adminlte-2.3.11/js/pages/dashboard.js"></script>--%>
 <!-- AdminLTE for demo purposes -->
-<script src="/assets/vendor/adminlte-2.3.11/js/demo.js"></script>
+<%--<script src="/assets/vendor/adminlte-2.3.11/js/demo.js"></script>--%>
+<%-- common js--%>
+<script src="/assets/js/common.js"></script>
