@@ -32,6 +32,9 @@
 <script src="/assets/vendor/datepicker/bootstrap-datepicker.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="/assets/vendor/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- DataTables -->
+<script src="/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets/vendor/datatables/dataTables.bootstrap.min.js"></script>
 <!-- Slimscroll -->
 <script src="/assets/vendor/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->

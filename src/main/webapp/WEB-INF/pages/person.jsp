@@ -31,10 +31,29 @@
                         <div class="input-group input-group-lg">
                             <input id="pname" class="form-control input-lg" type="text" placeholder="输入名开始搜索...">
                             <span class="input-group-btn">
-                                <button type="button" name="search" id="search-btn" class="btn btn-info btn-flat" onclick="submit();"><i class="fa fa-search"></i></button>
+                                <button type="button" name="search" id="search-btn" class="btn btn-info btn-flat"
+                                        onclick="doSearch();"><i class="fa fa-search"></i></button>
                             </span>
                         </div>
                     </div>
+                </div>
+
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><i class="fa fa-users" style="padding: 0 5px"></i>搜索结果</h3>
+                    </div>
+                    <div class="box-body">
+                        <table id="ptable" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>名</th>
+                                <th>字</th>
+                                <th>号</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
 
                 <div class="box box-success">
@@ -44,14 +63,6 @@
                     <div class="box-body" id="search-result">
                         <%-- 结果列表 --%>
                         <ul class="nav nav-stacked" id="result-list">
-                            <%--<li class="info-box">--%>
-                                <%--<span class="info-box-icon bg-gray info-box-icon-sm"><i class="fa fa-user"></i></span>--%>
-
-                                <%--<div class="info-box-content">--%>
-                                    <%--<span class="info-box-text">景</span>--%>
-                                    <%--<span class="info-box-number"><a href="http://ihave.news">汝和</a></span>--%>
-                                <%--</div>--%>
-                            <%--</li>--%>
                         </ul>
                     </div>
 
@@ -72,8 +83,8 @@
         InitSite('/siteinfo', 'post_body');
     });
 
-    var submit = function () {
-        console.info($("#pname").val());
+    // ajax查询用户
+    var doSearch = function () {
         if ($("#pname").val()) {
             $.ajax({
                 url: '/person/search',
@@ -82,19 +93,21 @@
                 data: {
                     name: $('#pname').val()
                 },
-                success: showResponse
+                error: function () {
+                    toastr.error("查无此人！");
+                },
+                success: function (json) {
+                    if (json.success) {
+                        // 将数据填充表格
+                        displayTable(json.result);
+
+                        // 绑定json数据到页面
+                        BindPeople(json.result);
+                    } else {
+                        toastr.error(json.msg);
+                    }
+                }
             });
-        }
-    };
-    var showResponse = function (responseText, statusText, xhr, $form) {
-        console.info(responseText);
-        if (responseText.success) {
-            // 绑定json数据到页面
-            BindPeople(responseText.result);
-            // 展开结果列表
-            $('.btn-box-tool').trigger('click');
-        } else {
-            toastr.error(responseText.msg);
         }
     };
 </script>

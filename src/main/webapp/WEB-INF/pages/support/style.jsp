@@ -31,6 +31,8 @@ folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="/assets/vendor/datepicker/datepicker3.css">
 <!-- Daterange picker -->
 <link rel="stylesheet" href="/assets/vendor/daterangepicker/daterangepicker.css">
+<!-- DataTables -->
+<link rel="stylesheet" href="/assets/vendor/datatables/dataTables.bootstrap.css">
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="/assets/vendor/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 <%-- toastr --%>

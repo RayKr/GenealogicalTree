@@ -47,6 +47,14 @@ var redirect = function (url) {
 };
 
 /**
+ * 成员链接转向
+ * @param url
+ */
+var openLink = function (url) {
+
+};
+
+/**
  * 初始化菜单
  * @param url 后台请求json的url
  * @parentid parentid 菜单ul的父标签id
@@ -177,13 +185,60 @@ var BindJson = function (jsonObj) {
     }
 };
 
+/**
+ * 后台查询结果显示在页面列表上
+ * @param json
+ * @constructor
+ */
 var BindPeople = function (json) {
+    // 删除所有匹配的li节点
+    $(".person-li").remove();
     var $ul = $("#result-list");
     for (var o in json) {
         var $a = $('<a href="javascript:void(0);" onclick="openLink(' + json[o].pid +');"></a>');
         $a.append(json[o].name);
-        var $li = $('<li></li>');
+        var $li = $('<li class="person-li"></li>');
         $li.append($a);
         $ul.append($li);
     }
 };
+
+/**
+ * 展示表格数据
+ * @param data
+ */
+var displayTable = function (data) {
+    $('#ptable').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "bDestroy": true,
+        "data": data,
+        "columns": [
+            {
+                "data": "name",
+                "render": function (data, type, full, meta) {
+                    return '<a href="#">' + data + '</a>';
+
+                }
+            }, {
+                "data": "styleName"
+            }, {
+                "data": "selfName"
+            }
+        ],
+        "oLanguage": {
+            "sLengthMenu": "每页 _MENU_ 条数据",
+            "sZeroRecords": "没有数据",
+            "sInfo": "_START_ - _END_ 总(_TOTAL_)",
+            "sInfoEmpty": "0 - 0 总数： 0",
+            "oPaginate": {
+                "sPrevious": " 上一页 ",
+                "sNext":     " 下一页 ",
+            }
+        },
+    });
+}
