@@ -41,3 +41,8 @@
 .nav>li>a>i {
     margin: 0 5px;
 }
+
+.line {
+    border-top: solid 1px #eeeeee;
+    margin-bottom: 10px;
+}

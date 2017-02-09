@@ -26,7 +26,7 @@
                         <div class="box box-widget widget-user">
                             <!-- Add the bg color to the header using any of the bg-* classes -->
                             <div class="widget-user-header bg-green">
-                                <h3 class="widget-user-username">宗雷</h3>
+                                <h3 class="widget-user-username">轼</h3>
                                 <h5 class="widget-user-desc">字子瞻<br>号东坡居士</h5>
                             </div>
                             <div class="widget-user-image">
@@ -37,7 +37,7 @@
                                     <div class="col-xs-4 border-right">
                                         <div class="description-block">
                                             <h5 class="description-header">二支</h5>
-                                            <span class="description-text">分支</span>
+                                            <span class="description-text">所属分支</span>
                                         </div>
                                         <!-- /.description-block -->
                                     </div>
@@ -45,15 +45,15 @@
                                     <div class="col-xs-4 border-right">
                                         <div class="description-block">
                                             <h5 class="description-header">三十世</h5>
-                                            <span class="description-text">世序</span>
+                                            <span class="description-text">家族世序</span>
                                         </div>
                                         <!-- /.description-block -->
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-xs-4">
                                         <div class="description-block">
-                                            <h5 class="description-header">行一</h5>
-                                            <span class="description-text">排行</span>
+                                            <h5 class="description-header">行二</h5>
+                                            <span class="description-text">兄弟排行</span>
                                         </div>
                                         <!-- /.description-block -->
                                     </div>
@@ -70,6 +70,7 @@
                                             <li><a href="#"><i class="fa fa-weixin"></i>微信：mdzz</a></li>
                                             <li><a href="#"><i class="fa fa-bank"></i>单位：青岛盛天科技有限责任公司</a></li>
                                             <li><a href="#"><i class="fa fa-users"></i>职位：Java软件工程师</a></li>
+                                            <li><a href="#"><i class="fa fa-file"></i>备注：</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -98,17 +99,73 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tab_1">
-                                    <b>How to use:</b>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="info-box bg-green">
+                                                <span class="info-box-icon">
+                                                    <img src="/assets/images/jing.jpg"alt="jing">
+                                                </span>
 
-                                    <p>Exactly like the original bootstrap tabs except you should use
-                                        the custom wrapper <code>.nav-tabs-custom</code> to achieve this style.</p>
-                                    A wonderful serenity has taken possession of my entire soul,
-                                    like these sweet mornings of spring which I enjoy with my whole heart.
-                                    I am alone, and feel the charm of existence in this spot,
-                                    which was created for the bliss of souls like mine. I am so happy,
-                                    my dear friend, so absorbed in the exquisite sense of mere tranquil existence,
-                                    that I neglect my talents. I should be incapable of drawing a single stroke
-                                    at the present moment; and yet I feel that I never was a greater artist than now.
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">父</span>
+                                                    <span class="info-box-number">月明</span>
+
+                                                    <div class="progress">
+                                                        <div class="progress-bar" style="width: 100%"></div>
+                                                    </div>
+                                                    <span class="progress-description">70% Increase in 30 Days</span>
+                                                </div>
+                                                <!-- /.info-box-content -->
+                                            </div>
+                                            <!-- /.info-box -->
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="info-box bg-yellow">
+                                                <span class="info-box-icon">
+                                                    <img src="/assets/images/womon.jpg"alt="jing">
+                                                </span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">母</span>
+                                                    <span class="info-box-number">纪长乐</span>
+
+                                                    <div class="progress">
+                                                        <div class="progress-bar" style="width: 100%"></div>
+                                                    </div>
+                                                    <span class="progress-description">70% Increase in 30 Days</span>
+                                                </div>
+                                                <!-- /.info-box-content -->
+                                            </div>
+                                            <!-- /.info-box -->
+                                        </div>
+                                    </div>
+                                    <%-- 分割线 --%>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="box" style="margin-bottom: 15px"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="info-box bg-aqua">
+                                                <span class="info-box-icon">
+                                                    <img src="/assets/images/womon.jpg"alt="jing">
+                                                </span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">嗣父</span>
+                                                    <span class="info-box-number">月华</span>
+
+                                                    <div class="progress">
+                                                        <div class="progress-bar" style="width: 100%"></div>
+                                                    </div>
+                                                    <span class="progress-description">嗣胞叔月华公</span>
+                                                </div>
+                                                <!-- /.info-box-content -->
+                                            </div>
+                                            <!-- /.info-box -->
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_2">

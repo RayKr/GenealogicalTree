@@ -295,7 +295,7 @@ var DisplayCardList = function (json) {
         }
 
         // 头像图片
-        var url = (data.portraitUrl) ? data.portraitUrl : "/assets/images/portrait.jpg";
+        var url = (data.portraitUrl) ? data.portraitUrl : "/assets/images/jing.jpg";
         var $portrait = $('<span class="info-box-icon"><img src="' + url + '" alt="profile"></span>');
 
         // 名
