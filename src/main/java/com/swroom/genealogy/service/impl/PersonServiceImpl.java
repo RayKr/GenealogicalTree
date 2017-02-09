@@ -2,16 +2,19 @@ package com.swroom.genealogy.service.impl;
 
 import com.swroom.genealogy.common.Constants;
 import com.swroom.genealogy.common.Enums;
+import com.swroom.genealogy.mapper.CardInfoMapper;
 import com.swroom.genealogy.mapper.GenPersonInfoMapper;
 import com.swroom.genealogy.mapper.GenPersonMapper;
 import com.swroom.genealogy.model.po.GenPerson;
 import com.swroom.genealogy.model.po.GenPersonInfo;
+import com.swroom.genealogy.model.vo.VCardInfo;
 import com.swroom.genealogy.model.vo.VPerson;
 import com.swroom.genealogy.service.PersonService;
 import com.swroom.genealogy.utils.CharacterConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.smartcardio.Card;
 import java.util.List;
 
 /**
@@ -26,6 +29,9 @@ public class PersonServiceImpl implements PersonService {
 
     @Autowired
     private GenPersonInfoMapper personInfoMapper;
+
+    @Autowired
+    private CardInfoMapper cardInfoMapper;
 
     /**
      * 根据名字查询成员方法
@@ -104,6 +110,14 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public int getAllPersonCount() {
         return this.personMapper.getAllPersonCount();
+    }
+
+    @Override
+    public List<VCardInfo> getCardsInfo(String name) {
+        // 获取name的简体和繁体
+        String simplifiedName = CharacterConvert.toSimplified(name);
+        String traditionalName = CharacterConvert.toTraditional(name);
+        return cardInfoMapper.selectCardInfo(simplifiedName, traditionalName);
     }
 
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swroom.genealogy.mapper.CardInfoMapper">
+  <resultMap id="BaseResultMap" type="com.swroom.genealogy.model.vo.VCardInfo">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="style_name" jdbcType="VARCHAR" property="styleName" />
+    <result column="self_name" jdbcType="VARCHAR" property="selfName" />
+    <result column="portrait" jdbcType="VARCHAR" property="portraitUrl" />
+  </resultMap>
+
+  <select id="selectCardInfo" resultMap="BaseResultMap">
+    SELECT p.pid, p.name, p.style_name, p.self_name, i.portrait
+    FROM gen_person p LEFT JOIN gen_person_info i ON p.pid = i.pid
+    WHERE p.name LIKE '%${simplifiedName}%' OR p.name LIKE '%${traditionalName}%'
+    OR p.style_name LIKE '%${simplifiedName}%' OR p.style_name LIKE '%${traditionalName}%'
+    OR p.self_name LIKE '%${simplifiedName}%' OR p.self_name LIKE '%${traditionalName}%'
+  </select>
+</mapper>

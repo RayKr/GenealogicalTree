@@ -21,6 +21,8 @@ public class GenPersonInfo {
 
     private String introduction;
 
+    private String portrait;
+
     /**
      * @return pid
      */
@@ -117,5 +119,19 @@ public class GenPersonInfo {
      */
     public void setIntroduction(String introduction) {
         this.introduction = introduction == null ? null : introduction.trim();
+    }
+
+    /**
+     * @return portrait
+     */
+    public String getPortrait() {
+        return portrait;
+    }
+
+    /**
+     * @param portrait
+     */
+    public void setPortrait(String portrait) {
+        this.portrait = portrait == null ? null : portrait.trim();
     }
 }

@@ -1,6 +1,7 @@
 package com.swroom.genealogy.controller;
 
 import com.swroom.genealogy.model.po.GenPerson;
+import com.swroom.genealogy.model.vo.VCardInfo;
 import com.swroom.genealogy.model.vo.VJson;
 import com.swroom.genealogy.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class PersonController {
     public Object searchPeopleList(@RequestParam("name") String name) {
 
         // 获取记录
-        List<GenPerson> genPeople = personService.selectByName(name);
+        List<VCardInfo> genPeople = personService.getCardsInfo(name);
 
         // 封装结果
         vJson = new VJson();

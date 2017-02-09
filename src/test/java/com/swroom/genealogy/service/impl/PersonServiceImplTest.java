@@ -1,6 +1,7 @@
 package com.swroom.genealogy.service.impl;
 
 import com.swroom.genealogy.model.po.GenPerson;
+import com.swroom.genealogy.model.vo.VCardInfo;
 import com.swroom.genealogy.model.vo.VPerson;
 import com.swroom.genealogy.service.PersonService;
 import org.junit.Test;
@@ -36,6 +37,12 @@ public class PersonServiceImplTest {
     public void getPersonDetail() throws Exception {
         VPerson personDetail = personService.getPersonDetail(2);
         System.out.println(personDetail.toString());
+    }
+
+    @Test
+    public void getCardsInfo() throws Exception {
+        List<VCardInfo> cardsInfo = personService.getCardsInfo("汝和");
+        System.out.println(cardsInfo);
     }
 
 }

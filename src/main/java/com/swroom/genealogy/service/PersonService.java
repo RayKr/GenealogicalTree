@@ -1,6 +1,7 @@
 package com.swroom.genealogy.service;
 
 import com.swroom.genealogy.model.po.GenPerson;
+import com.swroom.genealogy.model.vo.VCardInfo;
 import com.swroom.genealogy.model.vo.VPerson;
 
 import java.util.List;
@@ -44,5 +45,7 @@ public interface PersonService {
      * @return 总数
      */
     int getAllPersonCount();
+
+    List<VCardInfo> getCardsInfo(String name);
 
 }

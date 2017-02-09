@@ -12,5 +12,6 @@
     <result column="profession" jdbcType="VARCHAR" property="profession" />
     <result column="position" jdbcType="VARCHAR" property="position" />
     <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="portrait" jdbcType="VARCHAR" property="portrait" />
   </resultMap>
 </mapper>
