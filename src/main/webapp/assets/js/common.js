@@ -153,6 +153,7 @@ var doSearch = function (input) {
                 toastr.error("查无此人！");
             },
             success: function (json) {
+                clearNode("result-card");
                 if (json.success) {
                     // 显示查询结果
                     DisplayCardList(json.result);
@@ -273,9 +274,12 @@ var displayTable = function (data) {
     });
 }
 
+/**
+ * 组织CardList数据
+ * @param json
+ * @constructor
+ */
 var DisplayCardList = function (json) {
-    // 删除所有匹配的div节点
-    $(".result-card").remove();
     var $card = $("#card-list");
 
     for (var o in json) {
@@ -299,7 +303,7 @@ var DisplayCardList = function (json) {
         // 分割线
         var $line = $('<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>');
         // 字、号
-        var $ext_name = $('<span class="progress-description">字' + data.styleName + '&nbsp;号' + data.selfName + '</span>"');
+        var $ext_name = $('<span class="progress-description">字' + (data.styleName ? data.styleName : "无") + '&nbsp;号' + (data.selfName ? data.selfName : "无")  + '</span>"');
         // box-content
         var $box = $('<div class="info-box-content"></div>');
 
@@ -322,4 +326,9 @@ var DisplayCardList = function (json) {
         $card.append($div);
     }
 
+};
+
+var clearNode = function (c) {
+    // 删除所有匹配的div节点
+    $("."+c).remove();
 };

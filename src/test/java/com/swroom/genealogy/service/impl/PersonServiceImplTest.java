@@ -41,7 +41,7 @@ public class PersonServiceImplTest {
 
     @Test
     public void getCardsInfo() throws Exception {
-        List<VCardInfo> cardsInfo = personService.getCardsInfo("汝和");
+        List<VCardInfo> cardsInfo = personService.getCardsInfo("爱");
         System.out.println(cardsInfo);
     }
 
