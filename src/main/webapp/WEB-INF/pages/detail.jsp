@@ -64,6 +64,7 @@
                                     <div class="col-sm-12">
                                         <ul class="nav nav-stacked">
                                             <li><a>苏轼（1037年1月8日—1101年8月24日），字子瞻，又字和仲，号东坡居士，世称苏东坡、苏仙[1-3]  。汉族，北宋眉州眉山（今属四川省眉山市）人，祖籍河北栾城，北宋著名文学家、书法家、画家。</a></li>
+                                            <li><a href="#"><i class="fa fa-birthday-cake"></i>生日：1990/08/05</a></li>
                                             <li><a href="#"><i class="fa fa-phone"></i>电话：12345678901</a></li>
                                             <li><a href="#"><i class="fa fa-envelope"></i>邮箱：jingzonglei@163.com</a></li>
                                             <li><a href="#"><i class="fa fa-home"></i>住址：山东省青岛市市南区宁夏路200号</a></li>
@@ -126,7 +127,7 @@
                                             <a href="#">
                                                 <div class="info-box bg-yellow">
                                                 <span class="info-box-icon">
-                                                    <img src="/assets/images/womon.jpg"alt="jing">
+                                                    <img src="/assets/images/women.jpg"alt="jing">
                                                 </span>
 
                                                     <div class="info-box-content">
@@ -273,23 +274,86 @@
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_3">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    It has survived not only five centuries, but also the leap into electronic typesetting,
-                                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-                                    sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-                                    like Aldus PageMaker including versions of Lorem Ipsum.
+                                    <%-- 配偶 --%>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <a href="#">
+                                                <div class="info-box bg-yellow">
+                                                <span class="info-box-icon">
+                                                    <img src="/assets/images/women.jpg"alt="jing">
+                                                </span>
+
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">配</span>
+                                                        <span class="info-box-number">刘亦菲</span>
+
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%"></div>
+                                                        </div>
+                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                    </div>
+                                                    <!-- /.info-box-content -->
+                                                </div>
+                                                <!-- /.info-box -->
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_4">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    It has survived not only five centuries, but also the leap into electronic typesetting,
-                                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-                                    sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-                                    like Aldus PageMaker including versions of Lorem Ipsum.
+                                    <%-- 子 --%>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <a href="#">
+                                                <div class="info-box bg-green">
+                                                    <span class="info-box-icon">
+                                                        <img src="/assets/images/jing.jpg"alt="jing">
+                                                    </span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">行一</span>
+                                                        <span class="info-box-number">世清</span>
+
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%"></div>
+                                                        </div>
+                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                    </div>
+                                                    <!-- /.info-box-content -->
+                                                </div>
+                                                <!-- /.info-box -->
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <%-- 分割线 --%>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="box" style="margin-bottom: 15px"></div>
+                                        </div>
+                                    </div>
+                                    <%-- 女 --%>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <a href="#">
+                                                <div class="info-box bg-yellow">
+                                                <span class="info-box-icon">
+                                                    <img src="/assets/images/jing.jpg"alt="jing">
+                                                </span>
+
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">女一</span>
+                                                        <span class="info-box-number">菲</span>
+
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%"></div>
+                                                        </div>
+                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                    </div>
+                                                    <!-- /.info-box-content -->
+                                                </div>
+                                                <!-- /.info-box -->
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- /.tab-pane -->
                             </div>
@@ -298,10 +362,7 @@
                         <!-- nav-tabs-custom -->
                     </div>
                     <!-- /.col -->
-
                 </div>
-
-
             </section>
         </div>
     </div>
