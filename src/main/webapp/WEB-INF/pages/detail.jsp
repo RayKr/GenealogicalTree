@@ -88,7 +88,7 @@
                         <div class="nav-tabs-custom">
                             <div class="box box-widget widget-user-2" style="margin-bottom: 0">
                                 <div class="widget-user-header bg-yellow">
-                                    无过继关系，两子一女，兄弟三人，姐妹两人
+                                    <b>人物关系：</b>出嗣，两子一女，兄弟三人，姐妹两人
                                 </div>
                             </div>
                             <ul class="nav nav-tabs">
@@ -101,42 +101,46 @@
                                 <div class="tab-pane active" id="tab_1">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="info-box bg-green">
+                                            <a href="#">
+                                                <div class="info-box bg-green">
                                                 <span class="info-box-icon">
                                                     <img src="/assets/images/jing.jpg"alt="jing">
                                                 </span>
 
-                                                <div class="info-box-content">
-                                                    <span class="info-box-text">父</span>
-                                                    <span class="info-box-number">月明</span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">父</span>
+                                                        <span class="info-box-number">月明</span>
 
-                                                    <div class="progress">
-                                                        <div class="progress-bar" style="width: 100%"></div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%"></div>
+                                                        </div>
+                                                        <span class="progress-description">70% Increase in 30 Days</span>
                                                     </div>
-                                                    <span class="progress-description">70% Increase in 30 Days</span>
+                                                    <!-- /.info-box-content -->
                                                 </div>
-                                                <!-- /.info-box-content -->
-                                            </div>
-                                            <!-- /.info-box -->
+                                                <!-- /.info-box -->
+                                            </a>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="info-box bg-yellow">
+                                            <a href="#">
+                                                <div class="info-box bg-yellow">
                                                 <span class="info-box-icon">
                                                     <img src="/assets/images/womon.jpg"alt="jing">
                                                 </span>
 
-                                                <div class="info-box-content">
-                                                    <span class="info-box-text">母</span>
-                                                    <span class="info-box-number">纪长乐</span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">母</span>
+                                                        <span class="info-box-number">纪长乐</span>
 
-                                                    <div class="progress">
-                                                        <div class="progress-bar" style="width: 100%"></div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%"></div>
+                                                        </div>
+                                                        <span class="progress-description">70% Increase in 30 Days</span>
                                                     </div>
-                                                    <span class="progress-description">70% Increase in 30 Days</span>
+                                                    <!-- /.info-box-content -->
                                                 </div>
-                                                <!-- /.info-box-content -->
-                                            </div>
-                                            <!-- /.info-box -->
+                                                <!-- /.info-box -->
+                                            </a>
                                         </div>
                                     </div>
                                     <%-- 分割线 --%>
@@ -147,23 +151,25 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="info-box bg-aqua">
+                                            <a href="#">
+                                                <div class="info-box bg-aqua">
                                                 <span class="info-box-icon">
                                                     <img src="/assets/images/womon.jpg"alt="jing">
                                                 </span>
 
-                                                <div class="info-box-content">
-                                                    <span class="info-box-text">嗣父</span>
-                                                    <span class="info-box-number">月华</span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">嗣父</span>
+                                                        <span class="info-box-number">月华</span>
 
-                                                    <div class="progress">
-                                                        <div class="progress-bar" style="width: 100%"></div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%"></div>
+                                                        </div>
+                                                        <span class="progress-description">嗣胞叔月华公</span>
                                                     </div>
-                                                    <span class="progress-description">嗣胞叔月华公</span>
+                                                    <!-- /.info-box-content -->
                                                 </div>
-                                                <!-- /.info-box-content -->
-                                            </div>
-                                            <!-- /.info-box -->
+                                                <!-- /.info-box -->
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
