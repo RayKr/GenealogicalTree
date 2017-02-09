@@ -87,11 +87,11 @@
                         <!-- Custom Tabs -->
                         <div class="nav-tabs-custom">
                             <div class="box box-widget widget-user-2" style="margin-bottom: 0">
-                                <div class="widget-user-header bg-yellow">
-                                    <b>人物关系：</b>出嗣，两子一女，兄弟三人，姐妹两人
+                                <div class="widget-user-header ">
+                                    <b>人物关系</b>
                                 </div>
                             </div>
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs nav-relation">
                                 <li class="active"><a href="#tab_1" data-toggle="tab">&nbsp;&nbsp;父母&nbsp;&nbsp;</a></li>
                                 <li><a href="#tab_2" data-toggle="tab">&nbsp;&nbsp;同胞&nbsp;&nbsp;</a></li>
                                 <li><a href="#tab_3" data-toggle="tab">&nbsp;&nbsp;配偶&nbsp;&nbsp;</a></li>
@@ -99,6 +99,7 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tab_1">
+                                    <%-- 亲生父母 --%>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <a href="#">
@@ -149,12 +150,13 @@
                                             <div class="box" style="margin-bottom: 15px"></div>
                                         </div>
                                     </div>
+                                    <%-- 嗣父 --%>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <a href="#">
                                                 <div class="info-box bg-aqua">
                                                 <span class="info-box-icon">
-                                                    <img src="/assets/images/womon.jpg"alt="jing">
+                                                    <img src="/assets/images/jing.jpg"alt="jing">
                                                 </span>
 
                                                     <div class="info-box-content">
@@ -175,13 +177,99 @@
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_2">
-                                    The European languages are members of the same family. Their separate existence is a myth.
-                                    For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                                    in their grammar, their pronunciation and their most common words. Everyone realizes why a
-                                    new common language would be desirable: one could refuse to pay expensive translators. To
-                                    achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-                                    words. If several languages coalesce, the grammar of the resulting language is more simple
-                                    and regular than that of the individual languages.
+                                    <%-- 兄弟 --%>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <a href="#">
+                                                <div class="info-box bg-green">
+                                                    <span class="info-box-icon">
+                                                        <img src="/assets/images/jing.jpg"alt="jing">
+                                                    </span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">行一</span>
+                                                        <span class="info-box-number">世清</span>
+
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%"></div>
+                                                        </div>
+                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                    </div>
+                                                    <!-- /.info-box-content -->
+                                                </div>
+                                                <!-- /.info-box -->
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <a href="#">
+                                                <div class="info-box bg-green">
+                                                    <span class="info-box-icon">
+                                                        <img src="/assets/images/jing.jpg"alt="jing">
+                                                    </span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">行三</span>
+                                                        <span class="info-box-number">世明</span>
+
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%"></div>
+                                                        </div>
+                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                    </div>
+                                                    <!-- /.info-box-content -->
+                                                </div>
+                                                <!-- /.info-box -->
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <a href="#">
+                                                <div class="info-box bg-green">
+                                                    <span class="info-box-icon">
+                                                        <img src="/assets/images/jing.jpg"alt="jing">
+                                                    </span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">行四</span>
+                                                        <span class="info-box-number">世强</span>
+
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%"></div>
+                                                        </div>
+                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                    </div>
+                                                    <!-- /.info-box-content -->
+                                                </div>
+                                                <!-- /.info-box -->
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <%-- 分割线 --%>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="box" style="margin-bottom: 15px"></div>
+                                        </div>
+                                    </div>
+                                    <%-- 姐妹 --%>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <a href="#">
+                                                <div class="info-box bg-yellow">
+                                                <span class="info-box-icon">
+                                                    <img src="/assets/images/jing.jpg"alt="jing">
+                                                </span>
+
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">女一</span>
+                                                        <span class="info-box-number">菲</span>
+
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%"></div>
+                                                        </div>
+                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                    </div>
+                                                    <!-- /.info-box-content -->
+                                                </div>
+                                                <!-- /.info-box -->
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_3">
