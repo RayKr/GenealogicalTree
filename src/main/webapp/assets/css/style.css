@@ -33,3 +33,7 @@
     font-size: 1.2em;
     color: #006666;
 }
+
+.info-box-icon>img {
+    vertical-align: bottom;
+}

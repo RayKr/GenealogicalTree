@@ -5,14 +5,14 @@
  * 实现路径用POST传值并且打开新页面
  */
 $.extend({
-    StandardPost:function(url,args){
+    StandardPost: function (url, args) {
         var body = $(document.body),
             form = $("<form method='post'></form>"),
             input;
-        form.attr({"action":url});
-        $.each(args,function(key,value){
+        form.attr({"action": url});
+        $.each(args, function (key, value) {
             input = $("<input type='hidden'>");
-            input.attr({"name":key});
+            input.attr({"name": key});
             input.val(value);
             form.append(input);
         });
@@ -24,7 +24,7 @@ $.extend({
 });
 
 var redirectByPost = function (url, urlName) {
-    $.StandardPost(url,{urlName: urlName});
+    $.StandardPost(url, {urlName: urlName});
 };
 
 /**
@@ -32,10 +32,10 @@ var redirectByPost = function (url, urlName) {
  * @param url
  */
 var redirect = function (url) {
-    if(url && url != '#' && url != 'null') {
+    if (url && url != '#' && url != 'null') {
 
         // 判断如果是外链地址，则直接转向，如果是本站地址，则重定向
-        var regx=/^(http:\/\/)/;
+        var regx = /^(http:\/\/)/;
         var regxs = /^(https:\/\/)/;
         if (regx.test(url) || regxs.test(url)) {
             window.open(url);
@@ -67,7 +67,7 @@ var InitMenu = function (url, parentid) {
         var showlist = $('<ul class="nav navbar-nav"></ul>');
         showMenu(result, showlist);
 
-        var $parent = $("#"+parentid);
+        var $parent = $("#" + parentid);
         if ($parent.length === 0) {
             $parent = $('<div class="collapse navbar-collapse pull-right" id="navbar-collapse"></div>');
         }
@@ -126,7 +126,7 @@ var InitMenu = function (url, parentid) {
  * @constructor
  */
 var InitSite = function (url, id) {
-    $.getJSON(url, function(data){
+    $.getJSON(url, function (data) {
         new Vue({
             el: '#' + id,
             data: {
@@ -134,6 +134,36 @@ var InitSite = function (url, id) {
             }
         });
     });
+};
+
+/**
+ * 执行查询方法
+ * @param e
+ */
+var doSearch = function (input) {
+    if ($("#pname").val()) {
+        $.ajax({
+            url: '/person/search',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                name: input
+            },
+            error: function () {
+                toastr.error("查无此人！");
+            },
+            success: function (json) {
+                if (json.success) {
+                    // 显示查询结果
+                    DisplayCardList(json.result);
+
+                    $("#index-tip").css('display', '');
+                } else {
+                    toastr.error(json.msg);
+                }
+            }
+        });
+    }
 };
 
 /**
@@ -145,7 +175,7 @@ var BindJson = function (jsonObj) {
     for (var o in jsonObj) {
         var domObj = document.getElementById(o.toString());
         if (domObj) {
-            if(jsonObj[o]) {
+            if (jsonObj[o]) {
                 // 判断tagName，分别赋值
                 var tag = domObj.tagName.toUpperCase();
                 if (tag === "A" || tag === "SPAN") {
@@ -163,7 +193,7 @@ var BindJson = function (jsonObj) {
 
                     // 封装数据
                     $label.empty();
-                    var $a = $('<a href="javascript:void(0);" onclick="openLink(\''+o.toString()+'\');">'+labelenu[o].toString()+'</a>');
+                    var $a = $('<a href="javascript:void(0);" onclick="openLink(\'' + o.toString() + '\');">' + labelenu[o].toString() + '</a>');
                     $label.append($a);
                 }
 
@@ -195,7 +225,7 @@ var BindPeople = function (json) {
     $(".person-li").remove();
     var $ul = $("#result-list");
     for (var o in json) {
-        var $a = $('<a href="javascript:void(0);" onclick="openLink(' + json[o].pid +');"></a>');
+        var $a = $('<a href="javascript:void(0);" onclick="openLink(' + json[o].pid + ');"></a>');
         $a.append(json[o].name);
         var $li = $('<li class="person-li"></li>');
         $li.append($a);
@@ -237,8 +267,59 @@ var displayTable = function (data) {
             "sInfoEmpty": "0 - 0 总数： 0",
             "oPaginate": {
                 "sPrevious": " 上一页 ",
-                "sNext":     " 下一页 ",
+                "sNext": " 下一页 ",
             }
         },
     });
 }
+
+var DisplayCardList = function (json) {
+    // 删除所有匹配的div节点
+    $(".result-card").remove();
+    var $card = $("#card-list");
+
+    for (var o in json) {
+        var data = json[o];
+
+        // 性别不同，显示卡片颜色不同，男-green，女-yellow
+        var $bg;
+        console.info(data.sex);
+        if (data.sex == 1) {
+            $bg = $('<div class="info-box bg-green"></div>');
+        } else {
+            $bg = $('<div class="info-box bg-yellow"></div>');
+        }
+
+        // 头像图片
+        var url = (data.portraitUrl) ? data.portraitUrl : "/assets/images/portrait.jpg";
+        var $portrait = $('<span class="info-box-icon"><img src="' + url + '" alt="profile"></span>');
+
+        // 名
+        var $name = $('<span class="info-box-text">景</span><span class="info-box-number">' + data.name + '</span>');
+        // 分割线
+        var $line = $('<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>');
+        // 字、号
+        var $ext_name = $('<span class="progress-description">字' + data.styleName + '&nbsp;号' + data.selfName + '</span>"');
+        // box-content
+        var $box = $('<div class="info-box-content"></div>');
+
+        $box.append($name);
+        $box.append($line);
+        $box.append($ext_name);
+
+        $bg.append($portrait);
+        $bg.append($box);
+
+        // a
+        var $a = $('<a href="javascript:void(0);" onclick="openLink(' + data.pid + ')"></a>');
+        // card
+        var $div = $('<div class="col-md-3 col-sm-6 col-xs-12 result-card"></div>');
+
+        // 组织DOM
+        $a.append($bg);
+        $div.append($a);
+
+        $card.append($div);
+    }
+
+};

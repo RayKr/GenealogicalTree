@@ -10,18 +10,8 @@ public class VCardInfo {
     private String name; // 名
     private String styleName; // 字
     private String selfName; // 号
+    private int sex; // 性别
     private String portraitUrl; // 头像图片地址
-
-    public VCardInfo() {
-    }
-
-    public VCardInfo(int pid, String name, String styleName, String selfName, String portraitUrl) {
-        this.pid = pid;
-        this.name = name;
-        this.styleName = styleName;
-        this.selfName = selfName;
-        this.portraitUrl = portraitUrl;
-    }
 
     public int getPid() {
         return pid;
@@ -63,6 +53,14 @@ public class VCardInfo {
         this.portraitUrl = portraitUrl;
     }
 
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
     @Override
     public String toString() {
         return "VCardInfo{" +
@@ -70,7 +68,9 @@ public class VCardInfo {
                 ", name='" + name + '\'' +
                 ", styleName='" + styleName + '\'' +
                 ", selfName='" + selfName + '\'' +
+                ", sex=" + sex +
                 ", portraitUrl='" + portraitUrl + '\'' +
                 '}';
     }
+
 }
