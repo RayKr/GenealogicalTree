@@ -37,3 +37,7 @@
 .info-box-icon>img {
     vertical-align: bottom;
 }
+
+.nav>li>a>i {
+    margin: 0 5px;
+}

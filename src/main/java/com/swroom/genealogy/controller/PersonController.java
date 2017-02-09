@@ -26,8 +26,13 @@ public class PersonController {
     private PersonService personService;
 
     @RequestMapping(value = "")
-    public String personDetail(){
+    public String personSearch(){
         return "person";
+    }
+
+    @RequestMapping(value = "detail")
+    public String personDetail() {
+        return "detail";
     }
 
     @RequestMapping(value = "dash")
