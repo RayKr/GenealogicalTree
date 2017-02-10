@@ -47,6 +47,9 @@ public class GenPerson {
 
     private Integer heir;
 
+    @Column(name = "heir_father_id")
+    private Integer heirFatherId;
+
     @Column(name = "heir_father_name")
     private String heirFatherName;
 
@@ -273,6 +276,20 @@ public class GenPerson {
      */
     public void setHeir(Integer heir) {
         this.heir = heir;
+    }
+
+    /**
+     * @return heir_father_id
+     */
+    public Integer getHeirFatherId() {
+        return heirFatherId;
+    }
+
+    /**
+     * @param heirFatherId
+     */
+    public void setHeirFatherId(Integer heirFatherId) {
+        this.heirFatherId = heirFatherId;
     }
 
     /**

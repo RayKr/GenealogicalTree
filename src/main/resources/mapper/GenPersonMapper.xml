@@ -20,6 +20,7 @@
     <result column="dead" jdbcType="INTEGER" property="dead" />
     <result column="death_date" jdbcType="DATE" property="deathDate" />
     <result column="heir" jdbcType="INTEGER" property="heir" />
+    <result column="heir_father_id" jdbcType="INTEGER" property="heirFatherId" />
     <result column="heir_father_name" jdbcType="VARCHAR" property="heirFatherName" />
     <result column="ancestral_sequence" jdbcType="INTEGER" property="ancestralSequence" />
     <result column="ancestral_sequence_memo" jdbcType="VARCHAR" property="ancestralSequenceMemo" />

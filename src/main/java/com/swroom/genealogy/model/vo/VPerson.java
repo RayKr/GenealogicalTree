@@ -143,12 +143,12 @@ public class VPerson {
         this.heirFather = heirFather;
     }
 
-    public List<VCardInfo> getBrothers() {
-        return brothers;
+    public void setBrothers(List<VCardInfo> brothers) {
+        this.brothers = brothers;
     }
 
-    public List<VCardInfo> getChildren() {
-        return children;
+    public void setChildren(List<VCardInfo> children) {
+        this.children = children;
     }
 
     @Override
