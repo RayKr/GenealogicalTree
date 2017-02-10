@@ -1,8 +1,8 @@
 package com.swroom.genealogy.controller;
 
-import com.swroom.genealogy.model.po.GenPerson;
 import com.swroom.genealogy.model.vo.VCardInfo;
 import com.swroom.genealogy.model.vo.VJson;
+import com.swroom.genealogy.model.vo.VPerson;
 import com.swroom.genealogy.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
+ * Person
  * Created by jingz on 2017/2/7.
  */
 @Controller
@@ -64,5 +65,20 @@ public class PersonController {
         return vJson;
     }
 
+    @RequestMapping(value = "detailinfo", method = RequestMethod.GET)
+    public Object showPersonDetailInfo(@RequestParam("p") int pid) {
+        try {
+            VPerson personDetail = personService.getPersonDetail(pid);
+            // 封装结果
+            vJson = new VJson();
 
+            vJson.setSuccess(true);
+            vJson.setResult(personDetail);
+        } catch (Exception e) {
+            e.printStackTrace();
+            vJson.setMsg("查无此人！");
+            vJson.setSuccess(false);
+        }
+        return vJson;
+    }
 }

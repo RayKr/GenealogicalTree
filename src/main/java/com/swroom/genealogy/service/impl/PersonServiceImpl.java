@@ -71,16 +71,21 @@ public class PersonServiceImpl implements PersonService {
         vPerson.setDaughterNum(Enums.getEnuName(Constants.RANK, String.valueOf(childrenNum[1])));
 
         // 兄弟姐妹
-        List<GenPerson> brothers = this.personMapper.getBrothers(pid);
-        for (GenPerson brother : brothers) {
-            vPerson.getBrothers().put(brother.getPid(), brother.getName());
-        }
-
+        vPerson.setBrothers(this.cardInfoMapper.selectBrothersById(pid));
         // 子女
-        List<GenPerson> children = this.personMapper.getChildren(pid);
-        for (GenPerson child : children) {
-            vPerson.getChildren().put(child.getPid(), child.getName());
+        vPerson.setChildren(this.cardInfoMapper.selectChildrenById(pid));
+        // 父
+        if (genPerson.getFatherId() != null) {
+            vPerson.setFather(this.cardInfoMapper.selectCardInfoById(genPerson.getFatherId()));
         }
+        // 嗣父
+        if ("1".equals(genPerson.getHeir())) {
+            vPerson.setHeirFather(this.cardInfoMapper.selectCardInfoById(genPerson.getHeirFatherId()));
+        }
+        // 母
+        VCardInfo vi = new VCardInfo();
+        vi.setName(genPerson.getMotherName());
+        vPerson.setMother(vi);
 
         return vPerson;
     }
