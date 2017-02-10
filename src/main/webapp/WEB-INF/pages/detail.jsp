@@ -82,9 +82,6 @@
                     <!-- /.col -->
 
                     <div class="col-md-8">
-
-
-
                         <!-- Custom Tabs -->
                         <div class="nav-tabs-custom">
                             <div class="box box-widget widget-user-2" style="margin-bottom: 0">

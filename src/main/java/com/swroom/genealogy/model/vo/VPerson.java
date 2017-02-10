@@ -37,13 +37,12 @@ public class VPerson {
     private String daughterNum; // 女数量
 
     // 关系网
-    private List<String> spouse = new ArrayList<>(); // 配偶，介于古时一夫多妻制
-    private Map<String, String> spouseAddress = new HashMap<>(); // 配偶原址
-    private String father; // 父
-    private String mother; // 母
-    private String heirFather; // 嗣父，存在过继关系才显示
-    private Map<Integer, String> brothers = new HashMap<>(); // 兄弟姐妹Map<pid, name>
-    private Map<Integer, String> children = new HashMap<>(); // 子女Map<pid, name>
+    private VCardInfo father; // 父
+    private VCardInfo mother; // 母
+    private VCardInfo heirFather; // 嗣父，存在过继关系才显示
+    private List<VCardInfo> brothers = new ArrayList<>(); // 兄弟姐妹
+    private List<VCardInfo> children = new ArrayList<>(); // 子女
+    private List<VCardInfo> spouse = new ArrayList<>(); // 配偶，介于古时一夫多妻制
 
     // 个人信息
     private String birthday; // 生辰
@@ -85,25 +84,29 @@ public class VPerson {
         this.deathDate = DateUtil.getDateStr(genPerson.getDeathDate());
         this.heir = Enums.getEnuName(Constants.BOOLEAN, String.valueOf(genPerson.getHeir()));
 
-        // 古时一夫多妻，数据库中用`/`做分割
-        if (genPerson.getSpouseName() != null) {
-            String[] spouses = genPerson.getSpouseName().split("/");
-            // 将数组添加到集合，可使用Collections.addALL(map, array);
-            Collections.addAll(this.spouse, spouses);
-        }
         // 配偶地址在数据库中采用 `配偶名一:地址一/配偶名二:地址二/配偶名三:地址三` 形式存储
+        Map<String, String> addrmap = new HashMap<>();
         if (genPerson.getSpouseAddress() != null) {
             String[] addrs = genPerson.getSpouseAddress().split("/");
             for (String addr : addrs) {
                 String[] p = addr.split(":");
-                this.spouseAddress.put(p[0], p[1]);
+                addrmap.put(p[0], p[1]);
             }
         }
 
-        this.father = genPerson.getFatherName();
-        this.mother = genPerson.getMotherName();
-        this.heirFather = genPerson.getHeirFatherName();
+        // 古时一夫多妻，数据库中用`/`做分割
+        if (genPerson.getSpouseName() != null) {
+            String[] spouses = genPerson.getSpouseName().split("/");
+            // 将数组添加到集合，可使用Collections.addALL(map, array);
+            for (int i = 0; i < spouses.length; i++) {
+                VCardInfo ci = new VCardInfo();
+                ci.setName(spouses[i]);
 
+                if (addrmap.containsKey(spouses[i])) {
+                    ci.setMemo(addrmap.get(spouses[i]));
+                }
+            }
+        }
     }
 
     private void init(GenPersonInfo genPersonInfo) {
@@ -128,11 +131,23 @@ public class VPerson {
         this.daughterNum = daughterNum;
     }
 
-    public Map<Integer, String> getBrothers() {
+    public void setFather(VCardInfo father) {
+        this.father = father;
+    }
+
+    public void setMother(VCardInfo mother) {
+        this.mother = mother;
+    }
+
+    public void setHeirFather(VCardInfo heirFather) {
+        this.heirFather = heirFather;
+    }
+
+    public List<VCardInfo> getBrothers() {
         return brothers;
     }
 
-    public Map<Integer, String> getChildren() {
+    public List<VCardInfo> getChildren() {
         return children;
     }
 
@@ -155,7 +170,6 @@ public class VPerson {
                 ", sonNum='" + sonNum + '\'' +
                 ", daughterNum='" + daughterNum + '\'' +
                 ", spouse=" + spouse +
-                ", spouseAddress=" + spouseAddress +
                 ", father='" + father + '\'' +
                 ", mother='" + mother + '\'' +
                 ", heirFather='" + heirFather + '\'' +

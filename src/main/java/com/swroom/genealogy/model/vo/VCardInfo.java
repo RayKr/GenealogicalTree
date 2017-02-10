@@ -12,6 +12,7 @@ public class VCardInfo {
     private String selfName; // 号
     private int sex; // 性别
     private String portraitUrl; // 头像图片地址
+    private String memo; // 备注
 
     public int getPid() {
         return pid;
@@ -61,6 +62,14 @@ public class VCardInfo {
         this.sex = sex;
     }
 
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
     @Override
     public String toString() {
         return "VCardInfo{" +
@@ -70,6 +79,7 @@ public class VCardInfo {
                 ", selfName='" + selfName + '\'' +
                 ", sex=" + sex +
                 ", portraitUrl='" + portraitUrl + '\'' +
+                ", memo='" + memo + '\'' +
                 '}';
     }
 
