@@ -16,7 +16,7 @@
 <div class="wrapper" id="post_body">
     <%@ include file="support/header_top.jsp" %>
     <div class="content-wrapper">
-        <div class="container">
+        <div class="container" id="detailinfo">
             <!-- Main content -->
             <section class="content">
 
@@ -26,17 +26,17 @@
                         <div class="box box-widget widget-user">
                             <!-- Add the bg color to the header using any of the bg-* classes -->
                             <div class="widget-user-header bg-green">
-                                <h3 class="widget-user-username">轼</h3>
-                                <h5 class="widget-user-desc">字子瞻<br>号东坡居士</h5>
+                                <h3 class="widget-user-username" v-text="person.name"></h3>
+                                <h5 class="widget-user-desc">字<span v-text="person.styleName"></span><br>号<span v-text="person.selfName"></span></h5>
                             </div>
                             <div class="widget-user-image">
-                                <img class="img-circle" src="/assets/images/profile.png" alt="User Avatar">
+                                <img class="img-circle" :src=person.portrait alt="User Avatar">
                             </div>
                             <div class="box-footer">
                                 <div class="row">
                                     <div class="col-xs-4 border-right">
                                         <div class="description-block">
-                                            <h5 class="description-header">二支</h5>
+                                            <h5 class="description-header" v-text="person.branch"></h5>
                                             <span class="description-text">所属分支</span>
                                         </div>
                                         <!-- /.description-block -->
@@ -44,7 +44,7 @@
                                     <!-- /.col -->
                                     <div class="col-xs-4 border-right">
                                         <div class="description-block">
-                                            <h5 class="description-header">三十世</h5>
+                                            <h5 class="description-header" v-text="person.ancestralSeq"></h5>
                                             <span class="description-text">家族世序</span>
                                         </div>
                                         <!-- /.description-block -->
@@ -52,7 +52,7 @@
                                     <!-- /.col -->
                                     <div class="col-xs-4">
                                         <div class="description-block">
-                                            <h5 class="description-header">行二</h5>
+                                            <h5 class="description-header" v-text="person.rank"></h5>
                                             <span class="description-text">兄弟排行</span>
                                         </div>
                                         <!-- /.description-block -->
@@ -63,15 +63,15 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <ul class="nav nav-stacked">
-                                            <li><a>苏轼（1037年1月8日—1101年8月24日），字子瞻，又字和仲，号东坡居士，世称苏东坡、苏仙[1-3]  。汉族，北宋眉州眉山（今属四川省眉山市）人，祖籍河北栾城，北宋著名文学家、书法家、画家。</a></li>
-                                            <li><a href="#"><i class="fa fa-birthday-cake"></i>生日：1990/08/05</a></li>
-                                            <li><a href="#"><i class="fa fa-phone"></i>电话：12345678901</a></li>
-                                            <li><a href="#"><i class="fa fa-envelope"></i>邮箱：jingzonglei@163.com</a></li>
-                                            <li><a href="#"><i class="fa fa-home"></i>住址：山东省青岛市市南区宁夏路200号</a></li>
-                                            <li><a href="#"><i class="fa fa-weixin"></i>微信：mdzz</a></li>
-                                            <li><a href="#"><i class="fa fa-bank"></i>单位：青岛盛天科技有限责任公司</a></li>
-                                            <li><a href="#"><i class="fa fa-users"></i>职位：Java软件工程师</a></li>
-                                            <li><a href="#"><i class="fa fa-file"></i>备注：</a></li>
+                                            <li><a v-text="person.personMemo"></a></li>
+                                            <li><a href="#"><i class="fa fa-birthday-cake"></i>生日：<span v-text="person.birthday"></span></a></li>
+                                            <li><a href="#"><i class="fa fa-phone"></i>电话：<span v-text="person.cellphone"></span></a></li>
+                                            <li><a href="#"><i class="fa fa-envelope"></i>邮箱：<span v-text="person.email"></span></a></li>
+                                            <li><a href="#"><i class="fa fa-home"></i>住址：<span v-text="person.currentAddress"></span></a></li>
+                                            <li><a href="#"><i class="fa fa-weixin"></i>微信：<span v-text="person.wechat"></span></a></li>
+                                            <li><a href="#"><i class="fa fa-bank"></i>单位：<span v-text="person.profession"></span></a></li>
+                                            <li><a href="#"><i class="fa fa-users"></i>职位：<span v-text="person.position"></span></a></li>
+                                            <li><a href="#"><i class="fa fa-file"></i>备注：<span v-text="person.introduction"></span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -370,6 +370,7 @@
     $(function () {
         InitMenu('/initmenu', 'navbar-menu');
         InitSite('/siteinfo', 'post_body');
+        InitPersonData();
     });
 </script>
 </div>

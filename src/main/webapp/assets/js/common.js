@@ -50,8 +50,8 @@ var redirect = function (url) {
  * 成员链接转向
  * @param url
  */
-var openLink = function (url) {
-
+var openLink = function (pid) {
+    window.location.href = '/person/detail?p=' + pid;
 };
 
 /**
@@ -331,4 +331,29 @@ var DisplayCardList = function (json) {
 var clearNode = function (c) {
     // 删除所有匹配的div节点
     $("."+c).remove();
+};
+
+var InitPersonData = function () {
+    $.getJSON('/person/detailinfo?p=' + GetQueryString("p"), function (data) {
+        new Vue({
+            el: '#detailinfo',
+            data: {
+                person: data
+            }
+        });
+    });
+};
+
+
+/**
+ * 正则表达式获取地址栏参数
+ * @param name
+ * @returns {null}
+ * @constructor
+ */
+var GetQueryString = function (name)
+{
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
 };

@@ -51,6 +51,7 @@ public class VPerson {
     private String profession; // 行业
     private String position; // 职位
     private String introduction; // 个人介绍
+    private String portrait; // 头像
 
 
     public VPerson(GenPerson genPerson, GenPersonInfo genPersonInfo) throws Exception {
@@ -121,6 +122,7 @@ public class VPerson {
         this.profession = genPersonInfo.getProfession();
         this.position = genPersonInfo.getPosition();
         this.introduction = genPersonInfo.getIntroduction();
+        this.portrait = genPersonInfo.getPortrait();
     }
 
     public void setSonNum(String sonNum) {
@@ -149,6 +151,202 @@ public class VPerson {
 
     public void setChildren(List<VCardInfo> children) {
         this.children = children;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStyleName() {
+        return styleName;
+    }
+
+    public void setStyleName(String styleName) {
+        this.styleName = styleName;
+    }
+
+    public String getSelfName() {
+        return selfName;
+    }
+
+    public void setSelfName(String selfName) {
+        this.selfName = selfName;
+    }
+
+    public String getAncestralSeq() {
+        return ancestralSeq;
+    }
+
+    public void setAncestralSeq(String ancestralSeq) {
+        this.ancestralSeq = ancestralSeq;
+    }
+
+    public String getAncestralSeqMemo() {
+        return ancestralSeqMemo;
+    }
+
+    public void setAncestralSeqMemo(String ancestralSeqMemo) {
+        this.ancestralSeqMemo = ancestralSeqMemo;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public String getPersonMemo() {
+        return personMemo;
+    }
+
+    public void setPersonMemo(String personMemo) {
+        this.personMemo = personMemo;
+    }
+
+    public String getDead() {
+        return dead;
+    }
+
+    public void setDead(String dead) {
+        this.dead = dead;
+    }
+
+    public String getDeathDate() {
+        return deathDate;
+    }
+
+    public void setDeathDate(String deathDate) {
+        this.deathDate = deathDate;
+    }
+
+    public String getHeir() {
+        return heir;
+    }
+
+    public void setHeir(String heir) {
+        this.heir = heir;
+    }
+
+    public String getSonNum() {
+        return sonNum;
+    }
+
+    public String getDaughterNum() {
+        return daughterNum;
+    }
+
+    public VCardInfo getFather() {
+        return father;
+    }
+
+    public VCardInfo getMother() {
+        return mother;
+    }
+
+    public VCardInfo getHeirFather() {
+        return heirFather;
+    }
+
+    public List<VCardInfo> getBrothers() {
+        return brothers;
+    }
+
+    public List<VCardInfo> getChildren() {
+        return children;
+    }
+
+    public List<VCardInfo> getSpouse() {
+        return spouse;
+    }
+
+    public void setSpouse(List<VCardInfo> spouse) {
+        this.spouse = spouse;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getCurrentAddress() {
+        return currentAddress;
+    }
+
+    public void setCurrentAddress(String currentAddress) {
+        this.currentAddress = currentAddress;
+    }
+
+    public String getCellphone() {
+        return cellphone;
+    }
+
+    public void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
     }
 
     @Override

@@ -6,10 +6,12 @@ import com.swroom.genealogy.model.vo.VPerson;
 import com.swroom.genealogy.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -31,9 +33,23 @@ public class PersonController {
         return "person";
     }
 
-    @RequestMapping(value = "detail")
-    public String personDetail() {
-        return "detail";
+    @RequestMapping(value = "detail", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView personDetail(ModelMap map, @RequestParam("p") int pid) {
+
+        ModelAndView mv = new ModelAndView("detail");
+        try {
+//            VPerson personDetail = personService.getPersonDetail(pid);
+//
+//            map.addAttribute("person", personDetail);
+//
+//            mv = new ModelAndView("detail", map);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return mv;
     }
 
     @RequestMapping(value = "dash")
@@ -66,9 +82,11 @@ public class PersonController {
     }
 
     @RequestMapping(value = "detailinfo", method = RequestMethod.GET)
+    @ResponseBody
     public Object showPersonDetailInfo(@RequestParam("p") int pid) {
+        VPerson personDetail = null;
         try {
-            VPerson personDetail = personService.getPersonDetail(pid);
+            personDetail = personService.getPersonDetail(pid);
             // 封装结果
             vJson = new VJson();
 
@@ -79,6 +97,6 @@ public class PersonController {
             vJson.setMsg("查无此人！");
             vJson.setSuccess(false);
         }
-        return vJson;
+        return personDetail;
     }
 }
