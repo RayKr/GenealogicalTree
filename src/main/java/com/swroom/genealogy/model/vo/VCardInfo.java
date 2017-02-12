@@ -11,6 +11,7 @@ public class VCardInfo {
     private String styleName; // 字
     private String selfName; // 号
     private int sex; // 性别
+    private String rank; // 排行
     private String portraitUrl; // 头像图片地址
     private String memo; // 备注
 
@@ -68,6 +69,14 @@ public class VCardInfo {
 
     public void setMemo(String memo) {
         this.memo = memo;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
     }
 
     @Override

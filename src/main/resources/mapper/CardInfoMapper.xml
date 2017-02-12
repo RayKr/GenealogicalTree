@@ -14,28 +14,40 @@
   </resultMap>
 
   <select id="selectCardInfo" resultMap="BaseResultMap">
-    SELECT p.pid, p.name, p.style_name, p.self_name, p.sex, i.portrait
-    FROM gen_person p LEFT JOIN gen_person_info i ON p.pid = i.pid
+    SELECT p.pid, p.name, p.style_name, p.self_name, p.sex, e.enum_name rank, i.portrait
+    FROM gen_person p
+    LEFT JOIN gen_person_info i ON p.pid = i.pid
+    LEFT JOIN gen_enum_detail e ON e.enum_type = 'rankext' AND e.enum_value = p.rank AND e.enum_desc = p.sex
     WHERE p.name LIKE '%${simplifiedName}%' OR p.name LIKE '%${traditionalName}%'
     OR p.style_name LIKE '%${simplifiedName}%' OR p.style_name LIKE '%${traditionalName}%'
     OR p.self_name LIKE '%${simplifiedName}%' OR p.self_name LIKE '%${traditionalName}%'
+    ORDER BY p.sex DESC, p.rank
   </select>
 
   <select id="selectCardInfoById" resultMap="BaseResultMap">
-    SELECT p.pid, p.name, p.style_name, p.self_name, p.sex, i.portrait
-    FROM gen_person p LEFT JOIN gen_person_info i ON p.pid = i.pid
+    SELECT p.pid, p.name, p.style_name, p.self_name, p.sex, e.enum_name rank, i.portrait
+    FROM gen_person p
+    LEFT JOIN gen_person_info i ON p.pid = i.pid
+    LEFT JOIN gen_enum_detail e ON e.enum_type = 'rankext' AND e.enum_value = p.rank AND e.enum_desc = p.sex
     WHERE p.pid = #{pid}
+    ORDER BY p.sex DESC, p.rank
   </select>
 
   <select id="selectBrothersById" resultMap="BaseResultMap">
-    SELECT p.pid, p.name, p.style_name, p.self_name, p.sex, i.portrait
-    FROM gen_person p LEFT JOIN gen_person_info i ON p.pid = i.pid
+    SELECT p.pid, p.name, p.style_name, p.self_name, p.sex, e.enum_name rank, i.portrait
+    FROM gen_person p
+    LEFT JOIN gen_person_info i ON p.pid = i.pid
+    LEFT JOIN gen_enum_detail e ON e.enum_type = 'rankext' AND e.enum_value = p.rank AND e.enum_desc = p.sex
     WHERE p.father_id = ( SELECT g.father_id FROM gen_person g WHERE g.pid = #{pid} )
+    ORDER BY p.sex DESC, p.rank
   </select>
 
   <select id="selectChildrenById" resultMap="BaseResultMap">
-    SELECT p.pid, p.name, p.style_name, p.self_name, p.sex, i.portrait
-    FROM gen_person p LEFT JOIN gen_person_info i ON p.pid = i.pid
+    SELECT p.pid, p.name, p.style_name, p.self_name, p.sex, e.enum_name rank, i.portrait
+    FROM gen_person p
+    LEFT JOIN gen_person_info i ON p.pid = i.pid
+    LEFT JOIN gen_enum_detail e ON e.enum_type = 'rankext' AND e.enum_value = p.rank AND e.enum_desc = p.sex
     WHERE p.father_id = #{pid}
+    ORDER BY p.sex DESC, p.rank
   </select>
 </mapper>
