@@ -37,7 +37,8 @@
                                 <div class="row">
                                     <div class="col-xs-4 border-right">
                                         <div class="description-block">
-                                            <h5 class="description-header" v-text="person.branch"></h5>
+                                            <h5 class="description-header" v-if="person.branch" v-text="person.branch"></h5>
+                                            <h5 class="description-header" v-else>不详</h5>
                                             <span class="description-text">所属分支</span>
                                         </div>
                                         <!-- /.description-block -->
@@ -45,7 +46,8 @@
                                     <!-- /.col -->
                                     <div class="col-xs-4 border-right">
                                         <div class="description-block">
-                                            <h5 class="description-header" v-text="person.ancestralSeq"></h5>
+                                            <h5 class="description-header" v-if="person.ancestralSeq" v-text="person.ancestralSeq"></h5>
+                                            <h5 class="description-header" v-else>不详</h5>
                                             <span class="description-text">家族世序</span>
                                         </div>
                                         <!-- /.description-block -->
@@ -53,7 +55,9 @@
                                     <!-- /.col -->
                                     <div class="col-xs-4">
                                         <div class="description-block">
-                                            <h5 class="description-header" v-text="person.rank"></h5>
+                                            <h5 class="description-header" v-if="person.rank" v-text="person.rank"></h5>
+                                            <h5 class="description-header" v-else-if="person.sex === 1">独子</h5>
+                                            <h5 class="description-header" v-else=>独女</h5>
                                             <span class="description-text">兄弟排行</span>
                                         </div>
                                         <!-- /.description-block -->
@@ -102,8 +106,8 @@
                                     <div class="row">
                                         <%-- 父 --%>
                                         <div v-if="person.father" class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="javascript:" onclick="alert(21312);">
-                                                <input class="card_id" hidden="hidden" v-text="person.father.pid">
+                                            <a href="javascript:void(0);" onclick="openCard(this)">
+                                                <input class="card_id" hidden="hidden" v-model="person.father.pid">
                                                 <div class="info-box bg-green">
                                                 <span class="info-box-icon">
                                                     <img v-if="person.father.portraitUrl" :src=person.father.portraitUrl alt="jing">
@@ -122,54 +126,63 @@
                                         </div>
                                         <%-- 母 --%>
                                         <div v-if="person.mother" class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="#">
+                                            <a href="javascript:void(0);" onclick="openCard(this)">
+                                                <input class="card_id" hidden="hidden" v-model="person.mother.pid">
                                                 <div class="info-box bg-yellow">
                                                 <span class="info-box-icon">
-                                                    <img src="/assets/images/women.jpg"alt="jing">
+                                                    <img v-if="person.mother.portraitUrl" :src=person.mother.portraitUrl alt="jing">
+                                                    <img v-else src="/assets/images/women.jpg"alt="jing">
                                                 </span>
 
                                                     <div class="info-box-content">
                                                         <span class="info-box-text">母</span>
-                                                        <span class="info-box-number">纪长乐</span>
+                                                        <span class="info-box-number">
+                                                            <span v-if="person.mother.name" v-text="person.mother.name"></span>
+                                                            <span v-else>不详</span>
+                                                        </span>
 
                                                         <div class="progress">
                                                             <div class="progress-bar" style="width: 100%"></div>
                                                         </div>
-                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                        <span class="progress-description">
+                                                            <span v-if="person.mother.memo" v-text="person.mother.memo"></span>
+                                                        </span>
                                                     </div>
-                                                    <!-- /.info-box-content -->
                                                 </div>
-                                                <!-- /.info-box -->
                                             </a>
                                         </div>
                                     </div>
                                     <%-- 分割线 --%>
-                                    <div class="row">
+                                    <div v-if="person.heirfather" class="row">
                                         <div class="col-xs-12">
                                             <div class="box" style="margin-bottom: 15px"></div>
                                         </div>
                                     </div>
                                     <%-- 嗣父 --%>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="#">
+                                        <div v-if="person.heirfather" class="col-md-6 col-sm-6 col-xs-12">
+                                            <a href="javascript:void(0);" onclick="openCard(this)">
+                                                <input class="card_id" hidden="hidden" v-model="person.heirfather.pid">
                                                 <div class="info-box bg-aqua">
                                                 <span class="info-box-icon">
-                                                    <img src="/assets/images/jing.jpg"alt="jing">
+                                                    <img v-if="person.heirfather.portraitUrl" :src=person.heirfather.portraitUrl alt="jing">
+                                                    <img v-else src="/assets/images/jing.jpg"alt="jing">
                                                 </span>
 
                                                     <div class="info-box-content">
                                                         <span class="info-box-text">嗣父</span>
-                                                        <span class="info-box-number">月华</span>
+                                                        <span class="info-box-number" v-text="person.heirfather.name"></span>
 
                                                         <div class="progress">
                                                             <div class="progress-bar" style="width: 100%"></div>
                                                         </div>
-                                                        <span class="progress-description">嗣胞叔月华公</span>
+                                                        <span class="progress-description">
+                                                            字 <span v-text="person.heirfather.styleName"></span>&nbsp;
+                                                            号 <span v-text="person.heirfather.selfName"></span>&nbsp;
+                                                            <span v-if="person.heirfather.memo" v-text="person.heirfather.memo"></span>
+                                                        </span>
                                                     </div>
-                                                    <!-- /.info-box-content -->
                                                 </div>
-                                                <!-- /.info-box -->
                                             </a>
                                         </div>
                                     </div>
@@ -178,64 +191,28 @@
                                 <div class="tab-pane" id="tab_2">
                                     <%-- 兄弟 --%>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="#">
-                                                <div class="info-box bg-green">
+                                        <div class="col-md-6 col-sm-6 col-xs-12" v-for="brother in person.brothers" v-if="brother.sex === 1">
+                                            <a href="javascript:void(0);" onclick="openCard(this)">
+                                                <input class="card_id" hidden="hidden" v-model="brother.pid">
+                                                <div class="info-box"  v-bind:class="brother.sex === 1 ? 'bg-green' : 'bg-yellow'">
                                                     <span class="info-box-icon">
-                                                        <img src="/assets/images/jing.jpg"alt="jing">
+                                                        <img v-if="brother.portraitUrl" :src=brother.portraitUrl alt="jing">
+                                                        <img v-else src="/assets/images/jing.jpg"alt="jing">
                                                     </span>
                                                     <div class="info-box-content">
-                                                        <span class="info-box-text">行一</span>
-                                                        <span class="info-box-number">世清</span>
+                                                        <span class="info-box-text" v-text="brother.rank"></span>
+                                                        <span class="info-box-number" v-text="brother.name"></span>
 
                                                         <div class="progress">
                                                             <div class="progress-bar" style="width: 100%"></div>
                                                         </div>
-                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                        <span class="progress-description">
+                                                            字 <span v-text="brother.styleName"></span>&nbsp;
+                                                            号 <span v-text="brother.selfName"></span>&nbsp;
+                                                            <span v-if="brother.memo" v-text="brother.memo"></span>
+                                                        </span>
                                                     </div>
-                                                    <!-- /.info-box-content -->
                                                 </div>
-                                                <!-- /.info-box -->
-                                            </a>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="#">
-                                                <div class="info-box bg-green">
-                                                    <span class="info-box-icon">
-                                                        <img src="/assets/images/jing.jpg"alt="jing">
-                                                    </span>
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">行三</span>
-                                                        <span class="info-box-number">世明</span>
-
-                                                        <div class="progress">
-                                                            <div class="progress-bar" style="width: 100%"></div>
-                                                        </div>
-                                                        <span class="progress-description">70% Increase in 30 Days</span>
-                                                    </div>
-                                                    <!-- /.info-box-content -->
-                                                </div>
-                                                <!-- /.info-box -->
-                                            </a>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="#">
-                                                <div class="info-box bg-green">
-                                                    <span class="info-box-icon">
-                                                        <img src="/assets/images/jing.jpg"alt="jing">
-                                                    </span>
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">行四</span>
-                                                        <span class="info-box-number">世强</span>
-
-                                                        <div class="progress">
-                                                            <div class="progress-bar" style="width: 100%"></div>
-                                                        </div>
-                                                        <span class="progress-description">70% Increase in 30 Days</span>
-                                                    </div>
-                                                    <!-- /.info-box-content -->
-                                                </div>
-                                                <!-- /.info-box -->
                                             </a>
                                         </div>
                                     </div>
@@ -247,25 +224,28 @@
                                     </div>
                                     <%-- 姐妹 --%>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="#">
-                                                <div class="info-box bg-yellow">
-                                                <span class="info-box-icon">
-                                                    <img src="/assets/images/jing.jpg"alt="jing">
-                                                </span>
-
+                                        <div class="col-md-6 col-sm-6 col-xs-12" v-for="brother in person.brothers" v-if="brother.sex === 0">
+                                            <a href="javascript:void(0);" onclick="openCard(this)">
+                                                <input class="card_id" hidden="hidden" v-model="brother.pid">
+                                                <div class="info-box"  v-bind:class="brother.sex === 1 ? 'bg-green' : 'bg-yellow'">
+                                                    <span class="info-box-icon">
+                                                        <img v-if="brother.portraitUrl" :src=brother.portraitUrl alt="jing">
+                                                        <img v-else src="/assets/images/jing.jpg"alt="jing">
+                                                    </span>
                                                     <div class="info-box-content">
-                                                        <span class="info-box-text">女一</span>
-                                                        <span class="info-box-number">菲</span>
+                                                        <span class="info-box-text" v-text="brother.rank"></span>
+                                                        <span class="info-box-number" v-text="brother.name"></span>
 
                                                         <div class="progress">
                                                             <div class="progress-bar" style="width: 100%"></div>
                                                         </div>
-                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                        <span class="progress-description">
+                                                            字 <span v-text="brother.styleName"></span>&nbsp;
+                                                            号 <span v-text="brother.selfName"></span>&nbsp;
+                                                            <span v-if="brother.memo" v-text="brother.memo"></span>
+                                                        </span>
                                                     </div>
-                                                    <!-- /.info-box-content -->
                                                 </div>
-                                                <!-- /.info-box -->
                                             </a>
                                         </div>
                                     </div>
@@ -275,24 +255,29 @@
                                     <%-- 配偶 --%>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="#">
+                                            <a href="javascript:void(0);" onclick="openCard(this)">
+                                                <input class="card_id" hidden="hidden" v-model="person.spouse.pid">
                                                 <div class="info-box bg-yellow">
                                                 <span class="info-box-icon">
-                                                    <img src="/assets/images/women.jpg"alt="jing">
+                                                    <img v-if="person.spouse.portraitUrl" :src=person.spouse.portraitUrl alt="jing">
+                                                    <img v-else src="/assets/images/women.jpg"alt="jing">
                                                 </span>
 
                                                     <div class="info-box-content">
                                                         <span class="info-box-text">配</span>
-                                                        <span class="info-box-number">刘亦菲</span>
+                                                        <span class="info-box-number">
+                                                            <span v-if="person.spouse.name" v-text="person.spouse.name"></span>
+                                                            <span v-else>不详</span>
+                                                        </span>
 
                                                         <div class="progress">
                                                             <div class="progress-bar" style="width: 100%"></div>
                                                         </div>
-                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                        <span class="progress-description">
+                                                            <span v-if="person.spouse.memo" v-text="person.spouse.memo"></span>
+                                                        </span>
                                                     </div>
-                                                    <!-- /.info-box-content -->
                                                 </div>
-                                                <!-- /.info-box -->
                                             </a>
                                         </div>
                                     </div>
@@ -301,24 +286,28 @@
                                 <div class="tab-pane" id="tab_4">
                                     <%-- 子 --%>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="#">
-                                                <div class="info-box bg-green">
-                                                    <span class="info-box-icon">
-                                                        <img src="/assets/images/jing.jpg"alt="jing">
-                                                    </span>
+                                        <div class="col-md-6 col-sm-6 col-xs-12" v-for="child in person.children" v-if="child.sex === 1">
+                                            <a href="javascript:void(0);" onclick="openCard(this)">
+                                                <input class="card_id" hidden="hidden" v-model="child.pid">
+                                                <div class="info-box"  v-bind:class="child.sex === 1 ? 'bg-green' : 'bg-yellow'">
+                                                <span class="info-box-icon">
+                                                    <img v-if="child.portraitUrl" :src=child.portraitUrl alt="jing">
+                                                    <img v-else src="/assets/images/jing.jpg"alt="jing">
+                                                </span>
                                                     <div class="info-box-content">
-                                                        <span class="info-box-text">行一</span>
-                                                        <span class="info-box-number">世清</span>
+                                                        <span class="info-box-text" v-text="child.rank"></span>
+                                                        <span class="info-box-number" v-text="child.name"></span>
 
                                                         <div class="progress">
                                                             <div class="progress-bar" style="width: 100%"></div>
                                                         </div>
-                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                        <span class="progress-description">
+                                                        字 <span v-text="child.styleName"></span>&nbsp;
+                                                        号 <span v-text="child.selfName"></span>&nbsp;
+                                                        <span v-if="child.memo" v-text="child.memo"></span>
+                                                    </span>
                                                     </div>
-                                                    <!-- /.info-box-content -->
                                                 </div>
-                                                <!-- /.info-box -->
                                             </a>
                                         </div>
                                     </div>
@@ -330,36 +319,35 @@
                                     </div>
                                     <%-- 女 --%>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="#">
-                                                <div class="info-box bg-yellow">
+                                        <div class="col-md-6 col-sm-6 col-xs-12" v-for="child in person.children" v-if="child.sex === 0">
+                                            <a href="javascript:void(0);" onclick="openCard(this)">
+                                                <input class="card_id" hidden="hidden" v-model="child.pid">
+                                                <div class="info-box"  v-bind:class="child.sex === 1 ? 'bg-green' : 'bg-yellow'">
                                                 <span class="info-box-icon">
-                                                    <img src="/assets/images/jing.jpg"alt="jing">
+                                                    <img v-if="child.portraitUrl" :src=child.portraitUrl alt="jing">
+                                                    <img v-else src="/assets/images/jing.jpg"alt="jing">
                                                 </span>
-
                                                     <div class="info-box-content">
-                                                        <span class="info-box-text">女一</span>
-                                                        <span class="info-box-number">菲</span>
+                                                        <span class="info-box-text" v-text="child.rank"></span>
+                                                        <span class="info-box-number" v-text="child.name"></span>
 
                                                         <div class="progress">
                                                             <div class="progress-bar" style="width: 100%"></div>
                                                         </div>
-                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                        <span class="progress-description">
+                                                        字 <span v-text="child.styleName"></span>&nbsp;
+                                                        号 <span v-text="child.selfName"></span>&nbsp;
+                                                        <span v-if="child.memo" v-text="child.memo"></span>
+                                                    </span>
                                                     </div>
-                                                    <!-- /.info-box-content -->
                                                 </div>
-                                                <!-- /.info-box -->
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /.tab-pane -->
                             </div>
-                            <!-- /.tab-content -->
                         </div>
-                        <!-- nav-tabs-custom -->
                     </div>
-                    <!-- /.col -->
                 </div>
             </section>
         </div>
@@ -373,10 +361,6 @@
         InitSite('/siteinfo', 'post_body');
         InitPersonData();
     });
-
-    var open = function () {
-        console.info(222);
-    };
 </script>
 </div>
 </body>
