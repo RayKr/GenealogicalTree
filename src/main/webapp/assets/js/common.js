@@ -55,6 +55,18 @@ var openLink = function (pid) {
 };
 
 /**
+ * 打开卡片的链接
+ * @param e 卡片a节点
+ */
+var openCard = function (e) {
+    var $input = $(e).find('input.card_id');
+    var id = $input.val();
+    if (id != 0) {
+        openLink(id);
+    }
+};
+
+/**
  * 初始化菜单
  * @param url 后台请求json的url
  * @parentid parentid 菜单ul的父标签id
@@ -351,8 +363,7 @@ var InitPersonData = function () {
  * @returns {null}
  * @constructor
  */
-var GetQueryString = function (name)
-{
+var GetQueryString = function (name) {
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
     if(r!=null)return  unescape(r[2]); return null;
