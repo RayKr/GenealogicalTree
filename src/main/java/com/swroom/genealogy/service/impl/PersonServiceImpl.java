@@ -119,6 +119,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<VCardInfo> getCardsInfo(String name) {
+        // 如果输入的值中包含姓，则需加判断去掉姓后再查
+        String lastName = name.substring(0, 1);
+        if ("景".equals(lastName)){
+            name = name.substring(1);
+        }
+
         // 获取name的简体和繁体
         String simplifiedName = CharacterConvert.toSimplified(name);
         String traditionalName = CharacterConvert.toTraditional(name);
