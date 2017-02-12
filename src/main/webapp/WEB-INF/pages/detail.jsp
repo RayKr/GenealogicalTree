@@ -30,7 +30,8 @@
                                 <h5 class="widget-user-desc">字<span v-text="person.styleName"></span><br>号<span v-text="person.selfName"></span></h5>
                             </div>
                             <div class="widget-user-image">
-                                <img class="img-circle" :src=person.portrait alt="User Avatar">
+                                <img v-if="person.portrait" class="img-circle" :src=person.portrait alt="User Avatar">
+                                <img v-else class="img-circle" src="/assets/images/jing.jpg" alt="User Avatar">
                             </div>
                             <div class="box-footer">
                                 <div class="row">
@@ -64,14 +65,14 @@
                                     <div class="col-sm-12">
                                         <ul class="nav nav-stacked">
                                             <li><a v-text="person.personMemo"></a></li>
-                                            <li><a href="#"><i class="fa fa-birthday-cake"></i>生日：<span v-text="person.birthday"></span></a></li>
-                                            <li><a href="#"><i class="fa fa-phone"></i>电话：<span v-text="person.cellphone"></span></a></li>
-                                            <li><a href="#"><i class="fa fa-envelope"></i>邮箱：<span v-text="person.email"></span></a></li>
-                                            <li><a href="#"><i class="fa fa-home"></i>住址：<span v-text="person.currentAddress"></span></a></li>
-                                            <li><a href="#"><i class="fa fa-weixin"></i>微信：<span v-text="person.wechat"></span></a></li>
-                                            <li><a href="#"><i class="fa fa-bank"></i>单位：<span v-text="person.profession"></span></a></li>
-                                            <li><a href="#"><i class="fa fa-users"></i>职位：<span v-text="person.position"></span></a></li>
-                                            <li><a href="#"><i class="fa fa-file"></i>备注：<span v-text="person.introduction"></span></a></li>
+                                            <li><a ><i class="fa fa-birthday-cake"></i>生日：<span v-text="person.birthday"></span></a></li>
+                                            <li><a ><i class="fa fa-phone"></i>电话：<span v-text="person.cellphone"></span></a></li>
+                                            <li><a ><i class="fa fa-envelope"></i>邮箱：<span v-text="person.email"></span></a></li>
+                                            <li><a ><i class="fa fa-home"></i>住址：<span v-text="person.currentAddress"></span></a></li>
+                                            <li><a ><i class="fa fa-weixin"></i>微信：<span v-text="person.wechat"></span></a></li>
+                                            <li><a ><i class="fa fa-bank"></i>单位：<span v-text="person.profession"></span></a></li>
+                                            <li><a ><i class="fa fa-users"></i>职位：<span v-text="person.position"></span></a></li>
+                                            <li><a ><i class="fa fa-file"></i>备注：<span v-text="person.introduction"></span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -99,28 +100,28 @@
                                 <div class="tab-pane active" id="tab_1">
                                     <%-- 亲生父母 --%>
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="#">
+                                        <%-- 父 --%>
+                                        <div v-if="person.father" class="col-md-6 col-sm-6 col-xs-12">
+                                            <a href="javascript:" onclick="alert(21312);">
+                                                <input class="card_id" hidden="hidden" v-text="person.father.pid">
                                                 <div class="info-box bg-green">
                                                 <span class="info-box-icon">
-                                                    <img src="/assets/images/jing.jpg"alt="jing">
+                                                    <img v-if="person.father.portraitUrl" :src=person.father.portraitUrl alt="jing">
+                                                    <img v-else src="/assets/images/jing.jpg"alt="jing">
                                                 </span>
-
                                                     <div class="info-box-content">
                                                         <span class="info-box-text">父</span>
-                                                        <span class="info-box-number">月明</span>
-
+                                                        <span class="info-box-number" v-text="person.father.name"></span>
                                                         <div class="progress">
                                                             <div class="progress-bar" style="width: 100%"></div>
                                                         </div>
-                                                        <span class="progress-description">70% Increase in 30 Days</span>
+                                                        <span class="progress-description">字 <span v-text="person.father.styleName"></span>&nbsp; 号 <span v-text="person.father.selfName"></span> </span>
                                                     </div>
-                                                    <!-- /.info-box-content -->
                                                 </div>
-                                                <!-- /.info-box -->
                                             </a>
                                         </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <%-- 母 --%>
+                                        <div v-if="person.mother" class="col-md-6 col-sm-6 col-xs-12">
                                             <a href="#">
                                                 <div class="info-box bg-yellow">
                                                 <span class="info-box-icon">
@@ -372,6 +373,10 @@
         InitSite('/siteinfo', 'post_body');
         InitPersonData();
     });
+
+    var open = function () {
+        console.info(222);
+    };
 </script>
 </div>
 </body>
