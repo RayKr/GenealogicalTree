@@ -76,9 +76,11 @@ public class VPerson {
 
         this.sex = Enums.getEnuName(Constants.SEX, String.valueOf(genPerson.getSex()));
         // 排行需要判断男女，男：行一、行二；女：女一、女二
-        String rankCN = Enums.getEnuName(Constants.RANK, String.valueOf(genPerson.getRank()));
-        String prefix = genPerson.getSex() == 1 ? "行" : "女";
-        this.rank = prefix + rankCN;
+        if (genPerson.getRank() != null) {
+            String rankCN = Enums.getEnuName(Constants.RANK, String.valueOf(genPerson.getRank()));
+            String prefix = genPerson.getSex() == 1 ? "行" : "女";
+            this.rank = prefix + rankCN;
+        }
 
         personMemo = genPerson.getPersonMemo();
         this.dead = Enums.getEnuName(Constants.BOOLEAN, String.valueOf(genPerson.getDead()));
