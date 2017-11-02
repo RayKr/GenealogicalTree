@@ -1,4 +1,4 @@
-package com.swroom.genealogy.utils;
+package com.swroom.genealogy.util;
 
 /**
  * 数字工具类
