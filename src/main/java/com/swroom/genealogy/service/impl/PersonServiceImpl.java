@@ -10,7 +10,7 @@ import com.swroom.genealogy.model.po.GenPersonInfo;
 import com.swroom.genealogy.model.vo.VCardInfo;
 import com.swroom.genealogy.model.vo.VPerson;
 import com.swroom.genealogy.service.PersonService;
-import com.swroom.genealogy.utils.CharacterConvert;
+import com.swroom.genealogy.util.CharacterConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

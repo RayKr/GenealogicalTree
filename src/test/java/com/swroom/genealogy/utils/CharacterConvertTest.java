@@ -1,4 +1,4 @@
-package com.swroom.genealogy.utils;
+package com.swroom.genealogy.util;
 
 import junit.framework.TestCase;
 import org.junit.Assert;

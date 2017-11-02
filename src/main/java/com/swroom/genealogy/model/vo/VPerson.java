@@ -4,8 +4,8 @@ import com.swroom.genealogy.common.Constants;
 import com.swroom.genealogy.common.Enums;
 import com.swroom.genealogy.model.po.GenPerson;
 import com.swroom.genealogy.model.po.GenPersonInfo;
-import com.swroom.genealogy.utils.DateUtil;
-import com.swroom.genealogy.utils.NumericUtil;
+import com.swroom.genealogy.util.DateUtil;
+import com.swroom.genealogy.util.NumericUtil;
 
 import java.util.*;
 
