@@ -10,21 +10,21 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--加载jdbc配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
     <!--自动扫描包，自动注入-->
     <context:component-scan base-package="com.swroom.genealogy.mapper, com.swroom.genealogy.service"/>
 
     <!--apsectJ自动代理-->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <!--加载jdbc配置文件-->
-    <context:property-placeholder location="classpath:jdbc.properties"/>
-
     <!--注册druid数据源-->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+    <bean id="dataSource1" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 基本属性 url、user、password -->
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.user}"/>
-        <property name="password" value="${jdbc.password}"/>
+        <property name="url" value="${jdbc1.url}"/>
+        <property name="username" value="${jdbc1.user}"/>
+        <property name="password" value="${jdbc1.password}"/>
 
         <!-- 配置初始化大小、最小、最大 -->
         <property name="initialSize" value="0"/>
@@ -54,6 +54,52 @@
         <property name="filters" value="stat"/>
     </bean>
 
+    <bean id="dataSource2" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="url" value="${jdbc2.url}"/>
+        <property name="username" value="${jdbc2.user}"/>
+        <property name="password" value="${jdbc2.password}"/>
+
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="0"/>
+        <property name="minIdle" value="1"/>
+        <property name="maxActive" value="20"/>
+
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="60000"/>
+
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+
+        <property name="validationQuery" value="${validationQuery}"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <!-- oracle可以打开PSCache， mysql设置为关闭 -->
+        <property name="poolPreparedStatements" value="false"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="stat"/>
+    </bean>
+
+    <!-- 配置多数据源映射关系 -->
+    <bean id="dataSource" class="com.swroom.genealogy.util.database.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="dataSource1" value-ref="dataSource1"></entry>
+                <entry key="dataSource2" value-ref="dataSource2"></entry>
+            </map>
+        </property>
+        <!-- 默认目标数据源为你主库数据源 -->
+        <property name="defaultTargetDataSource" ref="dataSource1"/>
+    </bean>
+
     <!--注册mybatis的sqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -79,6 +125,9 @@
         <property name="markerInterface" value="tk.mybatis.mapper.common.Mapper"/>
     </bean>
 
+    <!-- 数据源切换 -->
+    <bean id="dataSourceExchange" class="com.swroom.genealogy.util.database.DataSourceExchange"/>
+
     <!--注册事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
@@ -88,20 +137,33 @@
     <tx:advice id="interceptor" transaction-manager="transactionManager">
         <tx:attributes>
             <!--配置连接点-->
-            <tx:method name="find*" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="get*" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="load*" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="search*" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="check*" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="insert*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="add*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="update*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="modify*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="edit*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="del*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="save*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="send*" propagation="NESTED" rollback-for="Exception"/>
 
-            <tx:method name="*" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="query*" read-only="true"/>
+            <tx:method name="search*" read-only="true"/>
+            <tx:method name="select*" read-only="true"/>
+            <tx:method name="count*" read-only="true"/>
+            <tx:method name="check*" read-only="true"/>
+            <tx:method name="load*" read-only="true"/>
         </tx:attributes>
     </tx:advice>
 
     <!-- AOP配置 -->
     <aop:config>
         <aop:pointcut id="txPointcut" expression="execution(* *..service..*.*(..))"/>
-        <aop:advisor advice-ref="interceptor" pointcut-ref="txPointcut"/>
+        <aop:pointcut id="changeDataSource" expression="@annotation(com.swroom.genealogy.util.database.DataSource)"/>
+        <!-- 关键配置，切换数据源一定要比持久层代码更先执行（事务也算持久层代码） -->
+        <aop:advisor advice-ref="dataSourceExchange" pointcut-ref="changeDataSource" order="1"/>
+        <aop:advisor advice-ref="interceptor" pointcut-ref="txPointcut" order="2"/>
     </aop:config>
 
     <!-- 实现静态类中调用Spring的Bean实例 -->
