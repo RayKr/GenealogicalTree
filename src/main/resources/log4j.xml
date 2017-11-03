@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- 控制台信息显示 -->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d - %c - %-5p - %m%n"/>
+        </layout>
+    </appender>
+    <!-- 控制台信息显示 -->
+
+    <!-- 在这里配置日志输出绝对路径 -->
+    <appender name="file" class="org.apache.log4j.RollingFileAppender">
+        <param name="file" value="/logs/root/root.log"/>
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="100MB" />
+        <param name="MaxBackupIndex" value="10" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d - %c - %-5p - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="druid-log" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="/logs/druid/druid.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d - %c - %-5p - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="dubbo-log" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="/logs/dubbo/dubbo.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d - %c - %-5p - %m%n"/>
+        </layout>
+    </appender>
+
+    <!--
+    <appender name="serviceConsole" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+    -->
+    <!-- ===================================================================== -->
+    <!-- 以下是appender的自定义，定义日志输出的目的地、输出方式及过滤级别        -->
+    <!-- ===================================================================== -->
+    <!--
+     <appender name="debug-log" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="/logs/debug/debug.log"/>
+        <param name="append" value="true"/>
+        <param name="ImmediateFlush" value="false"/>
+        <param name="BufferedIO" value="true"/>
+        <param name="BufferSize" value="8192"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d - %c - %-5p - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+        <param name="LevelMin" value="debug" />
+        <param name="LevelMax" value="debug" />
+        </filter>
+    </appender>
+    -->
+    <!--输出到文件（info）-->
+    <!--将生成“info.log.2014-06-11”这样的日志文件-->
+    <appender name="RollingInfo" class="st.platform.frame.log.MyDailyRollingFileAppender">
+        <param name="File" value="/logs/daily/info.log" />
+        <param name="DatePattern" value=".yyyy-MM-dd" />
+        <param name="append" value="true"/>
+        <param name="ImmediateFlush" value="true"/>
+        <param name="BufferedIO" value="false"/>
+        <param name="BufferSize" value="8192"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="MaxBackupIndex" value="10" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH\:mm\:ss\:SSS} - %c - %-5p - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="INFO" />
+            <param name="LevelMax" value="INFO" />
+        </filter>
+    </appender>
+    <!--输出到文件（debug）-->
+    <appender name="RollingDebug" class="st.platform.frame.log.MyDailyRollingFileAppender">
+        <param name="File" value="/logs/daily/debug.log" />
+        <param name="DatePattern" value=".yyyy-MM-dd" />
+        <param name="append" value="true"/>
+        <param name="ImmediateFlush" value="true"/>
+        <param name="BufferedIO" value="false"/>
+        <param name="BufferSize" value="8192"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="MaxBackupIndex" value="10" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH\:mm\:ss\:SSS} - %c - %-5p - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="debug" />
+            <param name="LevelMax" value="debug" />
+        </filter>
+    </appender>
+
+    <!--输出到文件（warn）-->
+    <appender name="RollingWarn" class="st.platform.frame.log.MyDailyRollingFileAppender">
+        <param name="File" value="/logs/daily/warn.log" />
+        <param name="DatePattern" value=".yyyy-MM-dd" />
+        <param name="append" value="true"/>
+        <param name="ImmediateFlush" value="true"/>
+        <param name="BufferedIO" value="false"/>
+        <param name="BufferSize" value="8192"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH\:mm\:ss\:SSS} - %c - %-5p - %m%n"/>
+        </layout>
+
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="WARN" />
+            <param name="LevelMax" value="WARN" />
+        </filter>
+    </appender>
+
+    <!--输出到文件（error）-->
+    <appender name="RollingError" class="st.platform.frame.log.MyDailyRollingFileAppender">
+        <param name="File" value="/logs/daily/error.log" />
+        <param name="DatePattern" value=".yyyy-MM-dd" />
+        <param name="append" value="true"/>
+        <param name="ImmediateFlush" value="true"/>
+        <param name="BufferedIO" value="false"/>
+        <param name="BufferSize" value="8192"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH\:mm\:ss\:SSS} - %c - %-5p - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="ERROR" />
+            <param name="LevelMax" value="ERROR" />
+        </filter>
+    </appender>
+
+    <!--输出到文件（业务日志）Info-->
+    <appender name="RollingServiceInfo" class="st.platform.frame.log.MyDailyRollingFileAppender">
+        <param name="File" value="/logs/daily/serviceInfo.log" />
+        <param name="DatePattern" value=".yyyy-MM-dd" />
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH\:mm\:ss\:SSS} - %c - %-5p - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="debug" />
+            <param name="LevelMax" value="INFO" />
+        </filter>
+    </appender>
+
+    <!--输出到文件（业务日志）Error-->
+    <appender name="RollingServiceError" class="st.platform.frame.log.MyDailyRollingFileAppender">
+        <param name="File" value="/logs/daily/serviceError.log" />
+        <param name="DatePattern" value=".yyyy-MM-dd" />
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH\:mm\:ss\:SSS} - %c - %-5p - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="WARN" />
+            <param name="LevelMax" value="FATAL" />
+        </filter>
+    </appender>
+
+
+
+
+
+    <!--按照日期+指定大小分隔日志 -->
+    <appender name="DateAndSize" class="st.platform.frame.log.Log4JDateAndSizeSplit">
+        <param name="File" value="/logs/DateAndSize/DateAndSize.log" />
+        <param name="DatePattern" value=".yyyy-MM-dd" />
+        <param name="append" value="true"/>
+        <param name="ImmediateFlush" value="true"/>
+        <param name="BufferedIO" value="false"/>
+        <param name="BufferSize" value="8192"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="MaxFileSize" value="1KB" />
+        <param name="MaxBackupIndex" value="10" />
+        <param name="Threshold" value="INFO"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH\:mm\:ss\:SSS} - %c - %-5p - %m%n"/>
+        </layout>
+
+    </appender>
+
+
+    <!-- ===================================================================== -->
+    <!-- 以下为自定义日志输出  -->
+    <!-- ===================================================================== -->
+    <!--通过<logger></logger>的定义可以将各个包中的类日志输出到不同的日志文件中-->
+
+    <logger name="com.alibaba.druid">
+        <level value="debug" />
+        <appender-ref ref="druid-log"/>
+    </logger>
+
+    <logger name="com.alibaba.dubbo">
+        <level value="info" />
+        <appender-ref ref="dubbo-log"/>
+    </logger>
+
+    <logger name="service">
+        <level value="debug" />
+        <appender-ref ref="RollingServiceInfo" />
+        <appender-ref ref="RollingServiceError" />
+    </logger>
+
+    <logger name="daily">
+        <level value="debug" />
+        <appender-ref ref="RollingDebug" />
+        <appender-ref ref="RollingInfo" />
+        <appender-ref ref="RollingWarn" />
+        <appender-ref ref="RollingError" />
+        <!-- <appender-ref ref="DateAndSize" />-->
+    </logger>
+    <logger name="filesize">
+        <level value="debug" />
+        <appender-ref ref="DateAndSize" />
+    </logger>
+
+
+    <!-- Root logger 所有logger的基类，没有定义的logger将会使用root logger     -->
+    <!--<level value="ALL"/> -->
+    <!-- ===================================================================== 	-->
+    <root>
+        <priority value="info" />
+        <appender-ref ref="console" />
+        <appender-ref ref="file"/>
+    </root>
+
+</log4j:configuration>

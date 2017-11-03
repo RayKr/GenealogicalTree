@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <!--定义日志文件的存储地址-->
+  <property name="root-file"  value="/logs/root/logback/root" />
+  <property name="rocketmq-file" value="/logs/rocketmq/rocketmq" />
+  <property name="socket-file" value="/logs/socket/socket" />
+
+  <!-- 控制台输出 -->
+  <appender name="root-console" class="ch.qos.logback.core.ConsoleAppender">
+   <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+   <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+    <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} - %logger{50} - %-5level - %msg%n</pattern>
+   </encoder>
+  </appender>
+
+  <!-- 每天生成一个日志文件，保存30天的日志文件 -->
+  <appender name="root-log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+   <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+   <!--日志文件输出的文件名-->
+    <FileNamePattern>${root-file}.%d{yyyy-MM-dd}.log</FileNamePattern>
+    <!--日志文件保留天数-->
+     <MaxHistory>30</MaxHistory>
+   </rollingPolicy>
+   <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+   <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+    <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+   </encoder>
+  </appender>
+   
+  <!-- ===================================================================== -->  
+  <!-- 以下是appender的自定义，定义日志输出的目的地、输出方式及过滤级别      -->  
+  <!-- ===================================================================== -->
+ 
+  <!-- 按照固定窗口模式生成日志文件，当文件大于100MB时，生成新的日志文件。窗口大小是1到10，当保存了10个归档文件后，将覆盖最早的日志 -->
+  <appender name="rocketmq-log" class="ch.qos.logback.core.rolling.RollingFileAppender"> 
+　　<file>${rocketmq-file}.log</file> 
+　　<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy"> 
+　　　<fileNamePattern>${rocketmq-file}.%i.log.zip</fileNamePattern> 
+　　　<minIndex>1</minIndex> 
+　　　<maxIndex>10</maxIndex> 
+　　</rollingPolicy> 
+    <!--日志文件最大的大小-->
+　　<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy"> 
+　　　<maxFileSize>100MB</maxFileSize> 
+　　</triggeringPolicy> 
+　　<encoder> 
+　　　<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern> 
+　　</encoder> 
+　  </appender> 
+
+  <appender name="socket-log" class="ch.qos.logback.core.rolling.RollingFileAppender"> 
+　　<file>${socket-file}.log</file> 
+　　<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy"> 
+　　　<fileNamePattern>${socket-file}.%i.log.zip</fileNamePattern> 
+　　　<minIndex>1</minIndex> 
+　　　<maxIndex>10</maxIndex> 
+　　</rollingPolicy> 
+    <!--日志文件最大的大小-->
+　　<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy"> 
+　　　<maxFileSize>100MB</maxFileSize> 
+　　</triggeringPolicy> 
+　　<encoder> 
+　　　<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern> 
+　　</encoder> 
+　 </appender> 
+
+ <!-- ===================================================================== -->  
+ <!-- 以下为自定义日志输出  -->
+ <!-- ===================================================================== -->	
+ <!--通过<logger></logger>的定义可以将各个包中的类日志输出到不同的日志文件中-->
+ 
+    <logger name="org.springframework" level="error" />
+
+	<logger name="java.sql" level="debug" />
+		
+	<logger name="st.mapper" level="debug" />
+		
+	<logger name="org.mybatis.spring.SqlSessionUtils" level="error" />
+	 
+	<logger name="org.mybatis.spring.transaction" level="error" />
+	                                   
+	<logger name="com.alibaba.rocketmq" level="info">
+		<appender-ref ref="rocketmq-log"/>  
+	</logger>
+	
+	<logger name="socketlog" level="info">
+		<appender-ref ref="socket-log"/>  
+	</logger>
+          
+    <!-- Root logger 所有logger的基类，没有定义的logger将会使用root logger     -->
+    <root level="info">
+     <appender-ref ref="root-console" />
+     <appender-ref ref="root-log"/>  
+    </root>
+
+</configuration>
